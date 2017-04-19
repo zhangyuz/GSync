@@ -1,0 +1,17 @@
+apply(from:"${rootProject.projectDir.absolutePath}/config/utils.gradle")
+
+ext{
+    appAuthRedirectScheme = "${System.getenv('APP_AUTH_REDIRECT_SCHEME')}"
+    clientId = "${System.getenv('CLIENT_ID')}"
+    redirectUri = "${System.getenv('REDIRECT_URI')}"
+}
+
+println("OAuth Configuration")
+if (checkEmptyStr(appAuthRedirectScheme) || checkEmptyStr(clientId) || checkEmptyStr(redirectUri)) {
+    throw new GradleException("OAuth environment varialbles not valid, please check first !!!")
+    println("OAuth environment varialbles not valid, please check first !!!")
+}
+println("appAuthRedirectScheme:${appAuthRedirectScheme}")
+println("client:${clientId}")
+println("redirectUri:${redirectUri}")
+

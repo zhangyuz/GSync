@@ -1,0 +1,7 @@
+def boolean checkEmptyStr(Object o) {
+    return o == null ? true : "null" == o.toString();
+}
+
+ext {
+    checkEmptyStr = this.&checkEmptyStr
+}
