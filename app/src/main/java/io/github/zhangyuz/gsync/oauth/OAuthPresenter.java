@@ -47,7 +47,7 @@ public final class OAuthPresenter implements OAuthContract.Presenter {
                 true, null, "https://accounts.google.com/o/oauth2/v2/auth",
                 "https://www.googleapis.com/oauth2/v4/token",
                 null, BuildConfig.clientId, BuildConfig.redirectUri,
-                "openid profile email https://www.googleapis.com/auth/calendar");
+                "openid profile email https://www.google.com/m8/feeds/ ");
         AuthCodeTask.RequestValues requestValues = new AuthCodeTask.RequestValues(idp);
         mUseCaseHandler.execute(mAuthCodeTask, requestValues, new UseCase.UseCaseCallback<AuthCodeTask.ResponseValues>() {
             @Override
