@@ -19,8 +19,8 @@ android {
         manifestPlaceholders = [
                 'appAuthRedirectScheme': "${appAuthRedirectScheme}"
         ]
-        buildConfigField "String", "clientId",  "${clientId}"
-        buildConfigField "String", "redirectUri",  "${redirectUri}"
+        buildConfigField "String", "clientId", "${clientId}"
+        buildConfigField "String", "redirectUri", "${redirectUri}"
     }
     buildTypes {
         release {
@@ -36,17 +36,18 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile ('net.openid:appauth:0.5.1', {
+    compile('net.openid:appauth:0.5.1', {
         // Cause appauth depends on 25.1.0 of customtabs
-        exclude group:'com.android.support', module: 'customtabs'
+        exclude group: 'com.android.support', module: 'customtabs'
     })
     compile 'com.android.support:customtabs:25.3.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0'
     compile 'com.android.support:design:25.3.1'
     testCompile 'junit:junit:4.12'
+    compile project(':googlecontact')
 }
