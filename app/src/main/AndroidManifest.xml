@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".oauth.OAuthActivity"
+        <activity
+            android:name=".oauth.OAuthActivity"
             android:launchMode="singleTask"/>
         <activity android:name="net.openid.appauth.RedirectUriReceiverActivity">
             <intent-filter>
@@ -33,6 +34,11 @@
                     android:path="/oauth2redirect"
                     android:scheme="https"/>
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".contact.ContactActivity"
+            android:label="@string/title_activity_contact"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
