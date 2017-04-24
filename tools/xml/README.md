@@ -18,9 +18,15 @@ wget https://developers.google.com/google-apps/contacts/v3/schema/contact_atom.r
 pytrang schema_contacts.rnc schema_contacts.xsd
 ```
 
-4. xsd 生成对应的JavaBean
+4. 使用 xsd 生成对应的 JAXB JavaBean
 
 ```shell
 find . -name "*xsd" | xargs -iT xjc T
+```
+
+5. 使用 [Android JAXB](https://github.com/yeshodhan/android-jaxb) 生成 SimpleXML 的 Java Bean
+
+```shell
+# 发现对于复杂的 xsd 文件，这个工具无法工作。。。
 ```
 
