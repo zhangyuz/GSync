@@ -8,19 +8,16 @@
 
 package com.google.schemas.contact._2008;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 import com.google.schemas.g._2005.GdataWhen;
+
+import org.simpleframework.xml.Attribute;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -31,65 +28,27 @@ import com.google.schemas.g._2005.GdataWhen;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "event")
 public class Event
-    extends GdataWhen
-{
+        extends GdataWhen {
 
-    @XmlAttribute(name = "label")
+    @Attribute(name = "label", required = false)
     protected String label;
-    @XmlAttribute(name = "rel")
+    @Attribute(name = "rel", required = false)
     protected String rel;
 
-    /**
-     * Gets the value of the label property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getLabel() {
         return label;
     }
 
-    /**
-     * Sets the value of the label property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setLabel(String value) {
         this.label = value;
     }
 
-    /**
-     * Gets the value of the rel property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getRel() {
         return rel;
     }
 
-    /**
-     * Sets the value of the rel property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setRel(String value) {
         this.rel = value;
     }

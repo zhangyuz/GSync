@@ -8,18 +8,6 @@
 
 package org.w3._2005.atom;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.schemas.contact._2008.Birthday;
 import com.google.schemas.contact._2008.CalendarLink;
 import com.google.schemas.contact._2008.Event;
@@ -44,389 +32,579 @@ import com.google.schemas.g._2005.PostalAddress;
 import com.google.schemas.g._2005.StructuredPostalAddress;
 import com.google.schemas.g._2005.Where;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
-/**
- * <p>Java class for anonymous complex type.
- * 
- * <p>The following schema fragment specifies the expected content contained within this class.
- * 
- * <pre>
- * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;choice maxOccurs="unbounded" minOccurs="0">
- *         &lt;element ref="{http://www.w3.org/2005/Atom}author"/>
- *         &lt;element ref="{http://www.w3.org/2005/Atom}generator"/>
- *         &lt;element ref="{http://www.w3.org/2005/Atom}id"/>
- *         &lt;element ref="{http://www.w3.org/2005/Atom}updated"/>
- *         &lt;group ref="{http://schemas.google.com/g/2005}contacts_contactEntry"/>
- *         &lt;group ref="{http://schemas.google.com/g/2005}contacts_contactKind"/>
- *         &lt;group ref="{http://schemas.google.com/g/2005}contacts_contactLink"/>
- *         &lt;element ref="{http://www.w3.org/2005/Atom}title"/>
- *         &lt;element ref="{http://a9.com/-/spec/opensearch/1.1/}itemsPerPage"/>
- *         &lt;element ref="{http://a9.com/-/spec/opensearch/1.1/}startIndex"/>
- *         &lt;element ref="{http://a9.com/-/spec/opensearch/1.1/}totalResults"/>
- *       &lt;/choice>
- *       &lt;attribute ref="{http://schemas.google.com/g/2005}etag"/>
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
- * </pre>
- * 
- * 
- */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "authorOrGeneratorOrId"
-})
-@XmlRootElement(name = "feed")
+import java.util.ArrayList;
+import java.util.List;
+
+@Root
 public class Feed {
 
-    @XmlElementRefs({
-        @XmlElementRef(name = "title", namespace = "http://www.w3.org/2005/Atom", type = Title.class, required = false),
-        @XmlElementRef(name = "generator", namespace = "http://www.w3.org/2005/Atom", type = Generator.class, required = false),
-        @XmlElementRef(name = "author", namespace = "http://www.w3.org/2005/Atom", type = Author.class, required = false),
-        @XmlElementRef(name = "startIndex", namespace = "http://a9.com/-/spec/opensearch/1.1/", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "id", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "entry", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "totalResults", namespace = "http://a9.com/-/spec/opensearch/1.1/", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "category", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "link", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "updated", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "itemsPerPage", namespace = "http://a9.com/-/spec/opensearch/1.1/", type = JAXBElement.class, required = false)
-    })
     protected List<Object> authorOrGeneratorOrId;
-    @XmlAttribute(name = "etag", namespace = "http://schemas.google.com/g/2005")
+    @Attribute(name = "etag", required = false)
     protected String etag;
+    @Element(name = "title", required = false)
+    Title title;
+    @Element(name = "generator", required = false)
+    Generator generator;
+    @Element(name = "author", required = false)
+    Author author;
+    @Element(name = "startIndex", required = false)
+    int startIndex;
+    @Element(name = "id", required = false)
+    String id;
+    @Element(name = "entry", required = false)
+    Entry entry;
+    @Element(name = "totalResults", required = false)
+    int totalResults;
+    @Element(name = "category", required = false)
+    Category category;
+    @Element(name = "link", required = false)
+    Link link;
+    @Element(name = "updated", required = false)
+    String updated;
+    @Element(name = "itemsPerPage", required = false)
+    int itemsPerPage;
 
-    /**
-     * Gets the value of the authorOrGeneratorOrId property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the authorOrGeneratorOrId property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getAuthorOrGeneratorOrId().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Title }
-     * {@link Generator }
-     * {@link Author }
-     * {@link JAXBElement }{@code <}{@link Integer }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link Feed.Entry }{@code >}
-     * {@link JAXBElement }{@code <}{@link Integer }{@code >}
-     * {@link JAXBElement }{@code <}{@link Feed.Category }{@code >}
-     * {@link JAXBElement }{@code <}{@link Feed.Link }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link Integer }{@code >}
-     * 
-     * 
-     */
-    public List<Object> getAuthorOrGeneratorOrId() {
-        if (authorOrGeneratorOrId == null) {
-            authorOrGeneratorOrId = new ArrayList<Object>();
-        }
-        return this.authorOrGeneratorOrId;
-    }
-
-    /**
-     * Gets the value of the etag property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getEtag() {
         return etag;
     }
 
-    /**
-     * Sets the value of the etag property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setEtag(String value) {
         this.etag = value;
     }
 
+    public Title getTitle() {
+        return title;
+    }
 
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;attribute name="scheme" use="required">
-     *         &lt;simpleType>
-     *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
-     *             &lt;enumeration value="http://schemas.google.com/g/2005#kind"/>
-     *           &lt;/restriction>
-     *         &lt;/simpleType>
-     *       &lt;/attribute>
-     *       &lt;attribute name="term" use="required">
-     *         &lt;simpleType>
-     *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
-     *             &lt;enumeration value="http://schemas.google.com/contact/2008#contact"/>
-     *           &lt;/restriction>
-     *         &lt;/simpleType>
-     *       &lt;/attribute>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "")
+    public void setTitle(Title title) {
+        this.title = title;
+    }
+
+    public Generator getGenerator() {
+        return generator;
+    }
+
+    public void setGenerator(Generator generator) {
+        this.generator = generator;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public int getStartIndex() {
+        return startIndex;
+    }
+
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Entry getEntry() {
+        return entry;
+    }
+
+    public void setEntry(Entry entry) {
+        this.entry = entry;
+    }
+
+    public int getTotalResults() {
+        return totalResults;
+    }
+
+    public void setTotalResults(int totalResults) {
+        this.totalResults = totalResults;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
+    }
+
+    public String getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(String updated) {
+        this.updated = updated;
+    }
+
+    public int getItemsPerPage() {
+        return itemsPerPage;
+    }
+
+    public void setItemsPerPage(int itemsPerPage) {
+        this.itemsPerPage = itemsPerPage;
+    }
+
+    public List<Object> getAuthorOrGeneratorOrId() {
+        return authorOrGeneratorOrId;
+    }
+
+    public void setAuthorOrGeneratorOrId(List<Object> authorOrGeneratorOrId) {
+        this.authorOrGeneratorOrId = authorOrGeneratorOrId;
+    }
+
     public static class Category {
 
-        @XmlAttribute(name = "scheme", required = true)
-        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-        protected String scheme;
-        @XmlAttribute(name = "term", required = true)
-        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-        protected String term;
+        @Attribute(name = "scheme")
+        String scheme;
 
-        /**
-         * Gets the value of the scheme property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
+        @Attribute(name = "term")
+        String term;
+
         public String getScheme() {
             return scheme;
         }
 
-        /**
-         * Sets the value of the scheme property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
         public void setScheme(String value) {
             this.scheme = value;
         }
 
-        /**
-         * Gets the value of the term property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
         public String getTerm() {
             return term;
         }
 
-        /**
-         * Sets the value of the term property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
         public void setTerm(String value) {
             this.term = value;
         }
 
     }
 
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;choice maxOccurs="unbounded" minOccurs="0">
-     *         &lt;element ref="{http://www.w3.org/2007/app}edited"/>
-     *         &lt;element ref="{http://www.w3.org/2005/Atom}content"/>
-     *         &lt;element ref="{http://www.w3.org/2005/Atom}id"/>
-     *         &lt;element ref="{http://www.w3.org/2005/Atom}updated"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}billingInformation"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}birthday"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}calendarLink"/>
-     *         &lt;group ref="{http://schemas.google.com/g/2005}contacts_contactKind"/>
-     *         &lt;group ref="{http://schemas.google.com/g/2005}contacts_contactLink"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}directoryServer"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}event"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}externalId"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}gender"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}groupMembershipInfo"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}hobby"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}initials"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}jot"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}language"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}maidenName"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}mileage"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}nickname"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}occupation"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}priority"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}relation"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}sensitivity"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}shortName"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}subject"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}userDefinedField"/>
-     *         &lt;element ref="{http://schemas.google.com/contact/2008}website"/>
-     *         &lt;element ref="{http://www.w3.org/2005/Atom}title"/>
-     *         &lt;element ref="{http://schemas.google.com/g/2005}deleted"/>
-     *         &lt;element ref="{http://schemas.google.com/g/2005}email"/>
-     *         &lt;element ref="{http://schemas.google.com/g/2005}extendedProperty"/>
-     *         &lt;element ref="{http://schemas.google.com/g/2005}im"/>
-     *         &lt;element ref="{http://schemas.google.com/g/2005}name"/>
-     *         &lt;element ref="{http://schemas.google.com/g/2005}organization"/>
-     *         &lt;element ref="{http://schemas.google.com/g/2005}phoneNumber"/>
-     *         &lt;element ref="{http://schemas.google.com/g/2005}postalAddress"/>
-     *         &lt;element ref="{http://schemas.google.com/g/2005}structuredPostalAddress"/>
-     *         &lt;element ref="{http://schemas.google.com/g/2005}where"/>
-     *       &lt;/choice>
-     *       &lt;attribute ref="{http://schemas.google.com/g/2005}etag"/>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "editedOrContentOrId"
-    })
     public static class Entry {
 
-        @XmlElementRefs({
-            @XmlElementRef(name = "content", namespace = "http://www.w3.org/2005/Atom", type = Content.class, required = false),
-            @XmlElementRef(name = "groupMembershipInfo", namespace = "http://schemas.google.com/contact/2008", type = GroupMembershipInfo.class, required = false),
-            @XmlElementRef(name = "im", namespace = "http://schemas.google.com/g/2005", type = Im.class, required = false),
-            @XmlElementRef(name = "billingInformation", namespace = "http://schemas.google.com/contact/2008", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "organization", namespace = "http://schemas.google.com/g/2005", type = Organization.class, required = false),
-            @XmlElementRef(name = "id", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "initials", namespace = "http://schemas.google.com/contact/2008", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "edited", namespace = "http://www.w3.org/2007/app", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "nickname", namespace = "http://schemas.google.com/contact/2008", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "externalId", namespace = "http://schemas.google.com/contact/2008", type = ExternalId.class, required = false),
-            @XmlElementRef(name = "userDefinedField", namespace = "http://schemas.google.com/contact/2008", type = UserDefinedField.class, required = false),
-            @XmlElementRef(name = "event", namespace = "http://schemas.google.com/contact/2008", type = Event.class, required = false),
-            @XmlElementRef(name = "category", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "email", namespace = "http://schemas.google.com/g/2005", type = Email.class, required = false),
-            @XmlElementRef(name = "extendedProperty", namespace = "http://schemas.google.com/g/2005", type = ExtendedProperty.class, required = false),
-            @XmlElementRef(name = "postalAddress", namespace = "http://schemas.google.com/g/2005", type = PostalAddress.class, required = false),
-            @XmlElementRef(name = "phoneNumber", namespace = "http://schemas.google.com/g/2005", type = PhoneNumber.class, required = false),
-            @XmlElementRef(name = "language", namespace = "http://schemas.google.com/contact/2008", type = Language.class, required = false),
-            @XmlElementRef(name = "hobby", namespace = "http://schemas.google.com/contact/2008", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "calendarLink", namespace = "http://schemas.google.com/contact/2008", type = CalendarLink.class, required = false),
-            @XmlElementRef(name = "website", namespace = "http://schemas.google.com/contact/2008", type = Website.class, required = false),
-            @XmlElementRef(name = "deleted", namespace = "http://schemas.google.com/g/2005", type = Deleted.class, required = false),
-            @XmlElementRef(name = "sensitivity", namespace = "http://schemas.google.com/contact/2008", type = Sensitivity.class, required = false),
-            @XmlElementRef(name = "where", namespace = "http://schemas.google.com/g/2005", type = Where.class, required = false),
-            @XmlElementRef(name = "relation", namespace = "http://schemas.google.com/contact/2008", type = Relation.class, required = false),
-            @XmlElementRef(name = "maidenName", namespace = "http://schemas.google.com/contact/2008", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "subject", namespace = "http://schemas.google.com/contact/2008", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "gender", namespace = "http://schemas.google.com/contact/2008", type = Gender.class, required = false),
-            @XmlElementRef(name = "shortName", namespace = "http://schemas.google.com/contact/2008", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "title", namespace = "http://www.w3.org/2005/Atom", type = Title.class, required = false),
-            @XmlElementRef(name = "priority", namespace = "http://schemas.google.com/contact/2008", type = Priority.class, required = false),
-            @XmlElementRef(name = "link", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "directoryServer", namespace = "http://schemas.google.com/contact/2008", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "jot", namespace = "http://schemas.google.com/contact/2008", type = Jot.class, required = false),
-            @XmlElementRef(name = "occupation", namespace = "http://schemas.google.com/contact/2008", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "birthday", namespace = "http://schemas.google.com/contact/2008", type = Birthday.class, required = false),
-            @XmlElementRef(name = "mileage", namespace = "http://schemas.google.com/contact/2008", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "updated", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "name", namespace = "http://schemas.google.com/g/2005", type = Name.class, required = false),
-            @XmlElementRef(name = "structuredPostalAddress", namespace = "http://schemas.google.com/g/2005", type = StructuredPostalAddress.class, required = false)
-        })
         protected List<Object> editedOrContentOrId;
-        @XmlAttribute(name = "etag", namespace = "http://schemas.google.com/g/2005")
+        @Attribute(name = "etag")
         protected String etag;
+        @Element(name = "content", required = false)
+        Content content;
+        @Element(name = "groupMembershipInfo", required = false)
+        GroupMembershipInfo groupMembershipInfo;
+        @Element(name = "im", required = false)
+        Im im;
+        @Element(name = "billingInformation", required = false)
+        String billingInformation;
+        @Element(name = "organization", required = false)
+        Organization organization;
+        @Element(name = "id", required = false)
+        String id;
+        @Element(name = "initials", required = false)
+        String initials;
+        @Element(name = "edited", required = false)
+        String edited;
+        @Element(name = "nickname", required = false)
+        String nickname;
+        @Element(name = "externalId", required = false)
+        ExternalId externalId;
+        @Element(name = "userDefinedField", required = false)
+        UserDefinedField userDefinedField;
+        @Element(name = "event", required = false)
+        Event event;
+        @Element(name = "category", required = false)
+        Category category;
+        @Element(name = "email", required = false)
+        Email email;
+        @Element(name = "extendedProperty", required = false)
+        ExtendedProperty extendedProperty;
+        @Element(name = "postalAddress", required = false)
+        PostalAddress postalAddress;
+        @Element(name = "phoneNumber", required = false)
+        PhoneNumber phoneNumber;
+        @Element(name = "language", required = false)
+        Language language;
+        @Element(name = "hobby", required = false)
+        String hobby;
+        @Element(name = "calendarLink", required = false)
+        CalendarLink calendarLink;
+        @Element(name = "website", required = false)
+        Website website;
+        @Element(name = "deleted", required = false)
+        Deleted deleted;
+        @Element(name = "sensitivity", required = false)
+        Sensitivity sensitivity;
+        @Element(name = "where", required = false)
+        Where where;
+        @Element(name = "relation", required = false)
 
-        /**
-         * Gets the value of the editedOrContentOrId property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the editedOrContentOrId property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getEditedOrContentOrId().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link Content }
-         * {@link GroupMembershipInfo }
-         * {@link Im }
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link Organization }
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link ExternalId }
-         * {@link UserDefinedField }
-         * {@link Event }
-         * {@link JAXBElement }{@code <}{@link Feed.Category }{@code >}
-         * {@link Email }
-         * {@link ExtendedProperty }
-         * {@link PostalAddress }
-         * {@link PhoneNumber }
-         * {@link Language }
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link CalendarLink }
-         * {@link Website }
-         * {@link Deleted }
-         * {@link Sensitivity }
-         * {@link Where }
-         * {@link Relation }
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link Gender }
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link Title }
-         * {@link Priority }
-         * {@link JAXBElement }{@code <}{@link Feed.Link }{@code >}
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link Jot }
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link Birthday }
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link Name }
-         * {@link StructuredPostalAddress }
-         * 
-         * 
-         */
+        Relation relation;
+        @Element(name = "maidenName", required = false)
+        String maidenName;
+        @Element(name = "subject", required = false)
+        String subject;
+        @Element(name = "gender", required = false)
+        Gender gender;
+        @Element(name = "shortName", required = false)
+        String shortName;
+        @Element(name = "title", required = false)
+        Title title;
+        @Element(name = "priority", required = false)
+        Priority priority;
+        @Element(name = "link", required = false)
+        Link link;
+        @Element(name = "directoryServer", required = false)
+        String directoryServer;
+        @Element(name = "jot", required = false)
+        Jot jot;
+        @Element(name = "occupation", required = false)
+        String occupation;
+        @Element(name = "birthday", required = false)
+        Birthday birthday;
+        @Element(name = "mileage", required = false)
+        String mileage;
+        @Element(name = "updated", required = false)
+        String updated;
+        @Element(name = "name", required = false)
+        Name name;
+        @Element(name = "structuredPostalAddress", required = false)
+        StructuredPostalAddress structuredPostalAddress;
+
+        public Content getContent() {
+            return content;
+        }
+
+        public void setContent(Content content) {
+            this.content = content;
+        }
+
+        public GroupMembershipInfo getGroupMembershipInfo() {
+            return groupMembershipInfo;
+        }
+
+        public void setGroupMembershipInfo(GroupMembershipInfo groupMembershipInfo) {
+            this.groupMembershipInfo = groupMembershipInfo;
+        }
+
+        public Im getIm() {
+            return im;
+        }
+
+        public void setIm(Im im) {
+            this.im = im;
+        }
+
+        public String getBillingInformation() {
+            return billingInformation;
+        }
+
+        public void setBillingInformation(String billingInformation) {
+            this.billingInformation = billingInformation;
+        }
+
+        public Organization getOrganization() {
+            return organization;
+        }
+
+        public void setOrganization(Organization organization) {
+            this.organization = organization;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public String getInitials() {
+            return initials;
+        }
+
+        public void setInitials(String initials) {
+            this.initials = initials;
+        }
+
+        public String getEdited() {
+            return edited;
+        }
+
+        public void setEdited(String edited) {
+            this.edited = edited;
+        }
+
+        public String getNickname() {
+            return nickname;
+        }
+
+        public void setNickname(String nickname) {
+            this.nickname = nickname;
+        }
+
+        public ExternalId getExternalId() {
+            return externalId;
+        }
+
+        public void setExternalId(ExternalId externalId) {
+            this.externalId = externalId;
+        }
+
+        public UserDefinedField getUserDefinedField() {
+            return userDefinedField;
+        }
+
+        public void setUserDefinedField(UserDefinedField userDefinedField) {
+            this.userDefinedField = userDefinedField;
+        }
+
+        public Event getEvent() {
+            return event;
+        }
+
+        public void setEvent(Event event) {
+            this.event = event;
+        }
+
+        public Category getCategory() {
+            return category;
+        }
+
+        public void setCategory(Category category) {
+            this.category = category;
+        }
+
+        public Email getEmail() {
+            return email;
+        }
+
+        public void setEmail(Email email) {
+            this.email = email;
+        }
+
+        public ExtendedProperty getExtendedProperty() {
+            return extendedProperty;
+        }
+
+        public void setExtendedProperty(ExtendedProperty extendedProperty) {
+            this.extendedProperty = extendedProperty;
+        }
+
+        public PostalAddress getPostalAddress() {
+            return postalAddress;
+        }
+
+        public void setPostalAddress(PostalAddress postalAddress) {
+            this.postalAddress = postalAddress;
+        }
+
+        public PhoneNumber getPhoneNumber() {
+            return phoneNumber;
+        }
+
+        public void setPhoneNumber(PhoneNumber phoneNumber) {
+            this.phoneNumber = phoneNumber;
+        }
+
+        public Language getLanguage() {
+            return language;
+        }
+
+        public void setLanguage(Language language) {
+            this.language = language;
+        }
+
+        public String getHobby() {
+            return hobby;
+        }
+
+        public void setHobby(String hobby) {
+            this.hobby = hobby;
+        }
+
+        public CalendarLink getCalendarLink() {
+            return calendarLink;
+        }
+
+        public void setCalendarLink(CalendarLink calendarLink) {
+            this.calendarLink = calendarLink;
+        }
+
+        public Website getWebsite() {
+            return website;
+        }
+
+        public void setWebsite(Website website) {
+            this.website = website;
+        }
+
+        public Deleted getDeleted() {
+            return deleted;
+        }
+
+        public void setDeleted(Deleted deleted) {
+            this.deleted = deleted;
+        }
+
+        public Sensitivity getSensitivity() {
+            return sensitivity;
+        }
+
+        public void setSensitivity(Sensitivity sensitivity) {
+            this.sensitivity = sensitivity;
+        }
+
+        public Where getWhere() {
+            return where;
+        }
+
+        public void setWhere(Where where) {
+            this.where = where;
+        }
+
+        public Relation getRelation() {
+            return relation;
+        }
+
+        public void setRelation(Relation relation) {
+            this.relation = relation;
+        }
+
+        public String getMaidenName() {
+            return maidenName;
+        }
+
+        public void setMaidenName(String maidenName) {
+            this.maidenName = maidenName;
+        }
+
+        public String getSubject() {
+            return subject;
+        }
+
+        public void setSubject(String subject) {
+            this.subject = subject;
+        }
+
+        public Gender getGender() {
+            return gender;
+        }
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public String getShortName() {
+            return shortName;
+        }
+
+        public void setShortName(String shortName) {
+            this.shortName = shortName;
+        }
+
+        public Title getTitle() {
+            return title;
+        }
+
+        public void setTitle(Title title) {
+            this.title = title;
+        }
+
+        public Priority getPriority() {
+            return priority;
+        }
+
+        public void setPriority(Priority priority) {
+            this.priority = priority;
+        }
+
+        public Link getLink() {
+            return link;
+        }
+
+        public void setLink(Link link) {
+            this.link = link;
+        }
+
+        public String getDirectoryServer() {
+            return directoryServer;
+        }
+
+        public void setDirectoryServer(String directoryServer) {
+            this.directoryServer = directoryServer;
+        }
+
+        public Jot getJot() {
+            return jot;
+        }
+
+        public void setJot(Jot jot) {
+            this.jot = jot;
+        }
+
+        public String getOccupation() {
+            return occupation;
+        }
+
+        public void setOccupation(String occupation) {
+            this.occupation = occupation;
+        }
+
+        public Birthday getBirthday() {
+            return birthday;
+        }
+
+        public void setBirthday(Birthday birthday) {
+            this.birthday = birthday;
+        }
+
+        public String getMileage() {
+            return mileage;
+        }
+
+        public void setMileage(String mileage) {
+            this.mileage = mileage;
+        }
+
+        public String getUpdated() {
+            return updated;
+        }
+
+        public void setUpdated(String updated) {
+            this.updated = updated;
+        }
+
+        public Name getName() {
+            return name;
+        }
+
+        public void setName(Name name) {
+            this.name = name;
+        }
+
+        public StructuredPostalAddress getStructuredPostalAddress() {
+            return structuredPostalAddress;
+        }
+
+        public void setStructuredPostalAddress(StructuredPostalAddress structuredPostalAddress) {
+            this.structuredPostalAddress = structuredPostalAddress;
+        }
+
         public List<Object> getEditedOrContentOrId() {
             if (editedOrContentOrId == null) {
                 editedOrContentOrId = new ArrayList<Object>();
@@ -434,210 +612,69 @@ public class Feed {
             return this.editedOrContentOrId;
         }
 
-        /**
-         * Gets the value of the etag property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
+        public void setEditedOrContentOrId(List<Object> editedOrContentOrId) {
+            this.editedOrContentOrId = editedOrContentOrId;
+        }
+
         public String getEtag() {
             return etag;
         }
 
-        /**
-         * Sets the value of the etag property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
         public void setEtag(String value) {
             this.etag = value;
         }
 
     }
 
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;attribute name="href" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *       &lt;attribute name="length" type="{http://www.w3.org/2001/XMLSchema}long" />
-     *       &lt;attribute name="rel" use="required">
-     *         &lt;simpleType>
-     *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
-     *             &lt;enumeration value="alternate"/>
-     *             &lt;enumeration value="edit"/>
-     *             &lt;enumeration value="http://schemas.google.com/contacts/2008/rel#edit-photo"/>
-     *             &lt;enumeration value="http://schemas.google.com/contacts/2008/rel#photo"/>
-     *             &lt;enumeration value="http://schemas.google.com/g/2005#batch"/>
-     *             &lt;enumeration value="http://schemas.google.com/g/2005#feed"/>
-     *             &lt;enumeration value="http://schemas.google.com/g/2005#post"/>
-     *             &lt;enumeration value="next"/>
-     *             &lt;enumeration value="previous"/>
-     *             &lt;enumeration value="self"/>
-     *           &lt;/restriction>
-     *         &lt;/simpleType>
-     *       &lt;/attribute>
-     *       &lt;attribute name="title" type="{http://www.w3.org/2001/XMLSchema}string" />
-     *       &lt;attribute name="type" use="required">
-     *         &lt;simpleType>
-     *           &lt;restriction base="{http://www.w3.org/2001/XMLSchema}token">
-     *             &lt;enumeration value="application/atom+xml"/>
-     *             &lt;enumeration value="image/*"/>
-     *             &lt;enumeration value="text/html"/>
-     *           &lt;/restriction>
-     *         &lt;/simpleType>
-     *       &lt;/attribute>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "")
     public static class Link {
 
-        @XmlAttribute(name = "href", required = true)
+        @Attribute(name = "href", required = true)
         protected String href;
-        @XmlAttribute(name = "length")
+        @Attribute(name = "length")
         protected Long length;
-        @XmlAttribute(name = "rel", required = true)
-        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+        @Attribute(name = "rel", required = true)
         protected String rel;
-        @XmlAttribute(name = "title")
+        @Attribute(name = "title")
         protected String title;
-        @XmlAttribute(name = "type", required = true)
-        @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+        @Attribute(name = "type", required = true)
         protected String type;
 
-        /**
-         * Gets the value of the href property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
         public String getHref() {
             return href;
         }
 
-        /**
-         * Sets the value of the href property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
         public void setHref(String value) {
             this.href = value;
         }
 
-        /**
-         * Gets the value of the length property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Long }
-         *     
-         */
         public Long getLength() {
             return length;
         }
 
-        /**
-         * Sets the value of the length property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Long }
-         *     
-         */
         public void setLength(Long value) {
             this.length = value;
         }
 
-        /**
-         * Gets the value of the rel property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
         public String getRel() {
             return rel;
         }
 
-        /**
-         * Sets the value of the rel property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
         public void setRel(String value) {
             this.rel = value;
         }
 
-        /**
-         * Gets the value of the title property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
         public String getTitle() {
             return title;
         }
 
-        /**
-         * Sets the value of the title property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
         public void setTitle(String value) {
             this.title = value;
         }
 
-        /**
-         * Gets the value of the type property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
         public String getType() {
             return type;
         }
 
-        /**
-         * Sets the value of the type property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
         public void setType(String value) {
             this.type = value;
         }

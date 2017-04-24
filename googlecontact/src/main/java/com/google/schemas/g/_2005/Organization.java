@@ -8,23 +8,15 @@
 
 package com.google.schemas.g._2005;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -44,136 +36,98 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "orgDepartmentOrOrgJobDescriptionOrOrgName"
-})
-@XmlRootElement(name = "organization")
 public class Organization {
 
-    @XmlElementRefs({
-        @XmlElementRef(name = "orgTitle", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "where", namespace = "http://schemas.google.com/g/2005", type = Where.class, required = false),
-        @XmlElementRef(name = "orgJobDescription", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "orgName", namespace = "http://schemas.google.com/g/2005", type = OrgName.class, required = false),
-        @XmlElementRef(name = "orgDepartment", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "orgSymbol", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false)
-    })
-    protected List<Object> orgDepartmentOrOrgJobDescriptionOrOrgName;
-    @XmlAttribute(name = "label")
+    @Attribute(name = "label", required = false)
     protected String label;
-    @XmlAttribute(name = "primary")
-    protected Boolean primary;
-    @XmlAttribute(name = "rel")
+    @Attribute(name = "primary", required = false)
+    protected boolean primary;
+    @Attribute(name = "rel", required = false)
     protected String rel;
+    @Element(name = "orgTitle", required = false)
+    String orgTitle;
+    @Element(name = "where", required = false)
+    String where;
+    @Element(name = "orgJobDescription", required = false)
+    String orgJobDescription;
+    @Element(name = "orgName", required = false)
+    String orgName;
+    @Element(name = "orgDepartment", required = false)
+    String orgDepartment;
+    @Element(name = "orgSymbol", required = false)
+    String orgSymbol;
 
-    /**
-     * Gets the value of the orgDepartmentOrOrgJobDescriptionOrOrgName property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the orgDepartmentOrOrgJobDescriptionOrOrgName property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getOrgDepartmentOrOrgJobDescriptionOrOrgName().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link Where }
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link OrgName }
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * 
-     * 
-     */
-    public List<Object> getOrgDepartmentOrOrgJobDescriptionOrOrgName() {
-        if (orgDepartmentOrOrgJobDescriptionOrOrgName == null) {
-            orgDepartmentOrOrgJobDescriptionOrOrgName = new ArrayList<Object>();
-        }
-        return this.orgDepartmentOrOrgJobDescriptionOrOrgName;
-    }
-
-    /**
-     * Gets the value of the label property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getLabel() {
         return label;
     }
 
-    /**
-     * Sets the value of the label property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setLabel(String value) {
         this.label = value;
     }
 
-    /**
-     * Gets the value of the primary property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isPrimary() {
+    public boolean isPrimary() {
         return primary;
     }
 
-    /**
-     * Sets the value of the primary property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setPrimary(Boolean value) {
+    public void setPrimary(boolean value) {
         this.primary = value;
     }
 
-    /**
-     * Gets the value of the rel property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getRel() {
         return rel;
     }
 
-    /**
-     * Sets the value of the rel property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setRel(String value) {
         this.rel = value;
+    }
+
+    public String getOrgTitle() {
+        return orgTitle;
+    }
+
+    public void setOrgTitle(String orgTitle) {
+        this.orgTitle = orgTitle;
+    }
+
+    public String getWhere() {
+        return where;
+    }
+
+    public void setWhere(String where) {
+        this.where = where;
+    }
+
+    public String getOrgJobDescription() {
+        return orgJobDescription;
+    }
+
+    public void setOrgJobDescription(String orgJobDescription) {
+        this.orgJobDescription = orgJobDescription;
+    }
+
+    public String getOrgName() {
+        return orgName;
+    }
+
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
+
+    public String getOrgDepartment() {
+        return orgDepartment;
+    }
+
+    public void setOrgDepartment(String orgDepartment) {
+        this.orgDepartment = orgDepartment;
+    }
+
+    public String getOrgSymbol() {
+        return orgSymbol;
+    }
+
+    public void setOrgSymbol(String orgSymbol) {
+        this.orgSymbol = orgSymbol;
     }
 
 }

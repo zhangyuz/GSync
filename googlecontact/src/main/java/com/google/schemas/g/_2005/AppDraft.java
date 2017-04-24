@@ -8,17 +8,13 @@
 
 package com.google.schemas.g._2005;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-
+import org.simpleframework.xml.Element;
 
 /**
  * <p>Java class for app_draft complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="app_draft">
  *   &lt;complexContent>
@@ -30,38 +26,17 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "app_draft", propOrder = {
-    "draft"
-})
+
 public class AppDraft {
 
-    @XmlElement(namespace = "http://www.w3.org/2007/app", required = true)
+    @Element
     protected String draft;
 
-    /**
-     * Gets the value of the draft property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getDraft() {
         return draft;
     }
 
-    /**
-     * Sets the value of the draft property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setDraft(String value) {
         this.draft = value;
     }

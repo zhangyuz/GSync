@@ -8,21 +8,15 @@
 
 package com.google.schemas.contact._2008;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Text;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;simpleContent>
@@ -52,31 +46,574 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/simpleContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ * This element describe another entity (usually a person) that is in a relation of some kind with the contact.
+ * The gContact:relation element may be repeated.
+ *
+ * @label?	xs:string	A simple string value used to name this relation. The value must not be empty or all whitespace.
+ * @rel?	xs:string	A programmatic value that identifies the type of relation.
+ * text()	xs:string	The entity in relation with the contact.
+ *
+ *
+Google Contacts API v3 Reference
+
+This document provides detailed reference documentation for the raw protocol (XML and HTTP) for the Google Contacts Data API.
+
+This document doesn't contain information about the programming-language client libraries. For client-library reference information, see the links from the programming-language-specific sections of the developer's guide.
+
+Audience
+
+This document is intended for programmers who want to write client applications that can interact with contacts.
+
+It's a reference document; it assumes that you understand the concepts presented in the developer's guide, and the general ideas behind the Google Data APIs protocol.
+
+Contacts feed types
+
+The Contacts Data API provides two types of feed: contacts feed and contact groups feed.
+
+The feeds are private read/write feeds that can be used to view and manage a user's contacts/groups. Since they are private, a programmer can access them only by using an authenticated request. That is, the request must contain an authentication token for the user whose contacts you want to retrieve. For more information about authenticating, see the developer's guide.
+
+The representation of contact data depends on projection. Projection values indicate what data is included in the representation. For a list of values, see Projection values, below.
+
+Contacts feed
+
+The URL for a feed of contacts takes the following form:
+
+https://www.google.com/m8/feeds/contacts/userID/projection
+To request a particular representation of a contacts feed, userID (e-mail address) and projection value have to be specified.
+
+Default can also be used instead of the user's e-mail address (it tells the server to return the contact groups for the user whose credentials accompany the request).
+
+For example, the contacts feed for a user liz@gmail.com and projection full would have the following URL:
+
+https://www.google.com/m8/feeds/contacts/liz%40gmail.com/full
+Note: The Contacts API has a hard limit to the number of results it can return at a time even if you explicitly request all possible results. If the requested feed has more fields than can be returned in a single response, the API truncates the feed and adds a "Next" link that allows you to request the rest of the response.
+
+Contact groups feed
+
+Similarly to the contacts feed, the contact groups feed is specified by a userID (or default value) and projection:
+
+https://www.google.com/m8/feeds/groups/userEmail/projection
+Example: groups for a user liz@gmail.com with projection full can be obtained using the URL:
+
+https://www.google.com/m8/feeds/groups/liz%40gmail.com/full
+You can also substitute default for the user's email address, which tells the server to return the contact groups for the authenticated user whose credentials accompany the request.
+
+Extended properties and projections
+
+Extended properties
+
+It is possible to set any additional contact- or contact group- related information as an exteded property (arbitrary name - value pair) for a contact or contact group entry. Preserving key uniqueness is a responsibility of clients. Value of the extended property may be stored as a value (arbitrary string) or an XML blob (these are mutually exclusive; instead of a valid XML blob plain text can be used). Each contact may have at most ten (10) extended properties associated. Each of them should be reasonably small, that is it should not be a photo, ringtone etc.
+
+Example
+
+Extended property with a key and a value:
+
+<gd:extendedProperty name="com.google" value="some value"/>
+Extended property with key and an XML blob:
+
+<gd:extendedProperty name="com.google">
+<some_xml></some_xml>
+</gd:extendedProperty>
+To limit extended property visibility one can use projections: full, property-KEY or thin.
+
+Projection values
+
+Although the examples in this document use only the full projection, there are some other useful projections.
+
+The following table describes the supported projection values:
+
+Projection name	Description
+thin	No gd:extendedProperty elements are returned/updated.
+property-KEY	KEY indicates the key of an extended property (gd:extendedProperty element) that will be returned (for GET) or should be updated (for PUT/POST). Absence of the extended property during update operation deletes the property.
+full	All gd:extendedProperty elements are returned and all of them have to be included during an update.
+Contacts query parameters reference
+
+The Contacts Data API supports the following standard Google Data API query parameters:
+
+Name	Description
+alt	The type of feed to return, such as atom (the default), rss, or json.
+q	Fulltext query on contacts data fields. The API currently supports simple search queries such as q=term1 term2 term3 and exact search queries such as q="term1 term2 term3"
+max-results	The maximum number of entries to return. If you want to receive all of the contacts, rather than only the default maximum, you can specify a very large number for max-results.
+start-index	The 1-based index of the first result to be retrieved (for paging).
+updated-min	The lower bound on entry update dates.
+For more information about the standard parameters, see the Google Data APIs protocol reference document.
+
+In addition to the standard query parameters, the Contacts Data API supports the following parameters:
+
+Name	Description
+orderby	Sorting criterion. The only supported value is lastmodified.
+showdeleted	Include deleted contacts in the returned contacts feed. Deleted contacts are shown as entries that contain nothing but an <atom:id> element and a <gd:deleted> element. (Google usually retains placeholders for deleted contacts for 30 days after deletion; during that time, you can request the placeholders using the showdeleted query parameter.) Valid values are true or false. When the server decides it cannot guarantee that it still has information about all deleted contacts pertinent to the query, then it's behavior depends on the value of the requirealldeleted query parameter.
+requirealldeleted	Only relevant if showdeleted and updated-min are also provided. It dictates the behavior of the server in case it detects that placeholders of some entries deleted since the point in time specified as updated-min may have been lost. If requirealldeleted is false, the server simply returns all the placeholders it still knows about. If true, the server returns the 410 HTTP response code. The default value is false.
+sortorder	Sorting order direction. Can be either ascending or descending.
+group	Constrains the results to only the contacts belonging to the group specified. Value of this parameter specifies group ID (see also: gContact:groupMembershipInfo).
+Contacts elements reference
+
+The Contacts Data API uses the standard Google Data API elements as well as elements specific for contacts.
+
+In particular, a contact entry takes the form of an extended Contact kind, representing a person, a venue such as a club or a restaurant, or an organization.
+
+The Contact kind appears in XML as an <atom:entry> element that contains various extension elements from the Google Data namespace. Besides these standard extensions, the Contacts API also supports additional extensions belonging to the gContact namespace.
+
+For information about the standard Google Data API elements, see the Atom specification and the Kinds document.
+
+The category element indicating that the entry is a contact looks like this:
+
+<atom:category scheme="http://schemas.google.com/g/2005#kind"
+term="http://schemas.google.com/contact/2008#contact"/>
+Extra restrictions on the standard Contact kind's extension elements
+
+In the Contacts Data API, several elements are slightly more restrictive than indicated in the documentation for the Contact kind. In particular, a client must supply either a rel attribute or a label attribute, but not both, for the following elements:
+
+gd:email
+gd:im
+gd:organization
+gd:phoneNumber
+gd:postalAddress
+Caution: When you create or update a contact, if you supply both rel and label (or neither) for any of those elements, then the server rejects the entry.
+
+Besides this general rule, there are also specific restrictions on the use of several other elements from the gd namespace:
+
+gd:when
+gd:where
+gd:structuredPostalAddress
+Restrictions on the use of gd:when
+
+The Contacts API makes use of the gd:when as a subelement of gContact:event.
+
+However, only the @startTime attribute is supported. Furthermore, its value must be a pure date, without the time component.
+
+Restrictions on the use of gd:where
+
+In the Contacts API, the gd:where element can be used in two contexts: directly under an entry of the Contact kind, or as a subelement of gd:organization.
+
+However, the Contacts API does not support the gd:where element in all its generality: the only supported property is the @valueString attribute.
+
+The attributes @rel and @label, as well as the gd:entryLink subelement, are not supported.
+
+Because the @valueString property is the only supported one, it is required.
+
+Restrictions on the use of gd:structuredPostalAddress
+
+Not all the properties of gd:structuredPostalAddress are supported by the Contacts API.
+
+The unsupported properties are the gd:agent, gd:housename, and gd:subregion subelements, and the attributes mailClass and usage.
+
+gd:extendedProperty
+
+Contact entry uses an extended gd:extendedProperty, which stores client-specific properties (see: Extended properties and projections).
+
+An example of an entry with extended properties (with a full projection):
+
+<entry gd:etag='"Q3k4cTVSLyp7ImA9WxRXFkwJRAA."'>
+<id>http://www.google.com/m8/feeds/contacts/liz%40gmail.com/base/8411573</id>
+<updated>2008-02-28T18:47:02.303Z</updated>
+<category scheme='http://schemas.google.com/g/2005#kind'
+term='http://schemas.google.com/contact/2008#contact' />
+<title>Jo</title>
+<content type='text'>Notes</content>
+<link rel='http://schemas.google.com/contacts/2008/rel#photo' type='image/*'
+href='https://www.google.com/m8/feeds/photos/media/liz%40gmail.com/8411573' />
+<link rel='self' type='application/atom+xml'
+href='https://www.google.com/m8/feeds/contacts/liz%40gmail.com/full/8411573' />
+<link rel='edit' type='application/atom+xml'
+href='https://www.google.com/m8/feeds/contacts/liz%40gmail.com/full/8411573' />
+<gd:phoneNumber rel='http://schemas.google.com/g/2005#other'
+primary='true'>456-123-2133</gd:phoneNumber>
+<gd:extendedProperty name='my-service-id' value='1234567890' />
+<gd:extendedProperty name='my-second-service'>
+<value-element>text value</value-element>
+</gd:extendedProperty>
+</entry>
+Important: Setting extended properties is allowed only within full or property-NAME projection.
+
+Contact photos with atom:link
+
+An <atom:link> element with rel="http://schemas.google.com/contacts/2008/rel#photo" provides a URL (in its href attribute) for adding, retrieving, updating, or deleting a contact's photo.
+
+The photo link element appears for every contact, whether or not the contact has a photo. If a contact does not have a photo, then the photo link element has no gd:etag attribute.
+
+Example photo link element, with ETag:
+
+<link rel='http://schemas.google.com/contacts/2008/rel#photo' type='image/*'
+href='http://google.com/m8/feeds/photos/media/liz%40gmail.com/c9012de'
+gd:etag='"KTlcZWs1bCp7ImBBPV43VUV4LXEZCXERZAc."'/>
+Note: When using photo links, an authorization token in HTTP header has to be specified. For more details please take a look at: Authenticating.
+
+Additional extensions of the Contact kind
+
+The Contacts API version 3.0 supports all the standard extensions of the Contact kind version 2.0, and introduces many other extensions belonging to the gContact namespace.
+
+These additional extensions are enumerated in the following table.
+
+Extension element	Description
+gContact:billingInformation?	Contacts billing information.
+gContact:birthday?	Contact's birthday.
+gContact:calendarLink*	Link to a calendar associated with the contact.
+gContact:directoryServer?	Directory server associated with the contact.
+gContact:event*	Event associated with the contact.
+gContact:externalId*	External identifier associated with the contact as set by a client
+gContact:gender?	Gender associated with the contact.
+gContact:groupMembershipInfo*	Group membership information.
+gContact:hobby*	Hobby associated with the contact.
+gContact:initials?	Contact's initials.
+gContact:jot*	Jot associated with the contact.
+gContact:language*	Language associated with the contact.
+gContact:maidenName?	Maiden name associated with the contact.
+gContact:mileage?	Mileage associated with the contact.
+gContact:nickname?	Nickname associated with the contact.
+gContact:occupation?	Occupation associated with the contact.
+gContact:priority?	Priority ascribed to the contact.
+gContact:relation*	Relation associated with the contact.
+gContact:sensitivity?	Sensitivity ascribed to the contact.
+gContact:shortName?	Contact's short name.
+gContact:subject?	Subject associated with the contact.
+gContact:userDefinedField*	User defined field attached to the contact.
+gContact:website*	Website associated with the contact.
+The Contacts API also allows arbitrary string values for the protocol attribute of the gd:im element.
+
+<gd:im protocol="MyProtocol" address="foo@myprotocol.com" rel="http://schemas.google.com/g/2005#home" primary="true"/>
+Contact groups elements reference
+
+Schema
+
+contactGroup = element atom:entry {
+atomCategory,
+atomUpdated,
+atomTitle,
+atomContent,
+element gd:deleted?,
+element gd:extendedProperty*,
+systemGroup?
+}
+The table below details contact groups schema:
+
+Property	Description
+atom:category	Scheme: http://schemas.google.com/g/2005#kind
+Term: http://schemas.google.com/g/2008#group
+atom:updated	The modification time for a group is greater than or equal to the time the user actually modified the item. Applications should not use the modification time to break ties.
+atom:title	Group's name.
+atom:content	Group's name. Not directly updatable; changes whenever the name of the group is updated via atom:title.
+gd:deleted	If present, denotes, that the group was deleted.
+gd:extendedProperty*	Stores client-specific properties. There are client-specific projections created, that support independent read/modify on the properties.
+gContact:systemGroup?	If present, indicates the group is a system group.
+An example of a non-system contact group entry:
+<entry xmlns="http://www.w3.org/2005/Atom"
+xmlns:gd="http://schemas.google.com/g/2005"
+gd:etag="&quot;Rno4ezVSLyp7ImA9WxdTEUgNRQU.&quot;">
+<category scheme="http://schemas.google.com/g/2005#kind"
+term="http://schemas.google.com/g/2005#group"/>
+<id>http://www.google.com/feeds/groups/jo%40gmail.com/base/1234</id>
+<published>2005-01-18T21:00:00Z</published>
+<updated>2006-01-01T00:00:00Z</updated>
+<app:edited xmlns:app="http://www.w3.org/2007/app">2006-01-01T00:00:00Z</app:edited>
+<title>Salsa class members</title>
+<content/>
+<link rel="self" type="application/atom+xml"
+href="https://www.google.com/m8/feeds/groups/jo%40gmail.com/full/1234"/>
+<link rel="edit" type="application/atom+xml"
+href="https://www.google.com/m8/feeds/groups/jo%40gmail.com/full/1234"/>
+<gd:extendedProperty name="more info">
+<description>A group that gathers salsa members.</description>
+</gd:extendedProperty>
+</entry>
+An example of a contact group entry for a system group:
+<entry xmlns="http://www.w3.org/2005/Atom"
+xmlns:gContact="http://schemas.google.com/contact/2008"
+xmlns:gd="http://schemas.google.com/g/2005"
+gd:etag="&quot;YDwqeyI.&quot;">
+<id>http://www.google.com/m8/feeds/groups/jo%40gmail.com/base/16</id>
+<updated>1970-01-01T00:00:00.000Z</updated>
+<category scheme="http://schemas.google.com/g/2005#kind"
+term="http://schemas.google.com/contact/2008#group"/>
+<title>System Group: My Contacts</title>
+<content>System Group: My Contacts</content>
+<link rel="self" type="application/atom+xml"
+href="https://www.google.com/m8/feeds/groups/jo%40gmail.com/full/16"/>
+<gContact:systemGroup id="Contacts"/>
+</entry>
+Contact groups query parameters reference
+
+Using the feed for contact groups one can use all of the query parameters available for the contact feed (see: Contacts query parameters reference) except for the group parameter.
+
+Contacts feeds schema reference
+
+Contacts Feed
+Contact Groups Feed
+gContact namespace reference
+
+The XML namespace http://schemas.google.com/contact/2008 contains many contacts-specific elements.
+
+It is usually referred to using the alias gContact.
+
+gContact:billingInformation
+
+Specifies billing information of the entity represented by the contact. The element cannot be repeated.
+
+Example
+
+The contact's billing address is:
+
+John Doe
+1600 Amphitheatre Parkway
+Mountain View, CA 94043
+<gContact:billingInformation>1600 Amphitheatre Parkway
+Mountain View, CA 94043</gContact:billingInformation>
+gContact:birthday
+
+Stores birthday date of the person represented by the contact. The element cannot be repeated.
+
+Properties
+
+Property	Description
+when	Birthday date, given in format YYYY-MM-DD (with the year), or --MM-DD (without the year).
+Example
+
+Person born on July 4, 1980:
+
+<gContact:birthday when='1980-07-04'/>
+
+Person born on December 25th, with no year specified:
+<gContact:birthday when='--12-25'/>
+gContact:calendarLink
+
+Storage for URL of the contact's calendar. The element can be repeated.
+
+Properties
+
+Property	Description
+rel	Predefined calendar link type. Can be one of work, home or free-busy.
+label	User-defined calendar link type.
+primary	Boolean flag denoting the calendar link as primary.
+href	The URL of the calendar.
+
+Attributes rel and label are mutually exclusive (but one must be specified). Only one calendar link can be marked as primary at a time.
+Example
+
+Two links to user's calendars. The first is of custom type "Phases of the Moon," the second is of predefined type home. The latter is marked as primary.
+
+<gContact:calendarLink
+label='Phases of the Moon'
+href='https://www.google.com/calendar/embed?src=aHQzamxmYWFjNWxmZDYyNjN1bGZoNHRxbDhAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ'/>
+<gContact:calendarLink
+rel='home'
+href='https://www.google.com/calendar/render?tab=mc&gsessionid=jhds76iaJKHAGi78tweKJHG'
+primary='true'/>
+gContact:directoryServer
+
+A directory server associated with this contact. May not be repeated.
+
+Properties
+
+Property	Type	Description
+text()	xs:string	The name or address of the directory server. May not be empty or all whitespace. Other than that, the Contacts API does not constrain the form of the string describing the directory server in any way.
+gContact:event
+
+These elements describe events associated with a contact. They may be repeated.
+
+Property	Type	Description
+ @label?	xs:string	A simple string value used to name this event. It allows UIs to display a label such as "Start Date". May not be empty or all whitespace.
+ @rel?	xs:string	A programmatic value that identifies the type of event.
+ gd:when	when	Gives the time of the event. Warning: not every correct gd:when can be used: its startTime attribute must be of type xs:date.
+ Rel values
+
+ Value	Description
+ anniversary	An anniversary
+ other	Other event type
+ Note: Exactly one of the label and rel attributes must be provided.
+
+ gContact:externalId
+
+ Describes an ID of the contact in an external system of some kind. This element may be repeated.
+
+ Property	Type	Description
+ @label?	xs:string	A simple string value used to name this ID.
+ @rel	xs:string	A programmatic value that identifies the type of external ID.
+ @value	xs:string	The value of this external ID.
+ Rel values
+
+ Value	Description
+ account	Contact's account number.
+ customer	Contact's customer ID.
+ network	Network identifier of the contact.
+ organization	Identifier related to an organization the contact is associated with.
+ gContact:gender
+
+ Specifies the gender of the person represented by the contact. The element cannot be repeated.
+
+ Properties
+
+ Property	Description
+ value	The person's gender, either male or female
+ Example
+
+ The person is a male:
+
+ <gContact:gender value='male'/>
+ gContact:groupMembershipInfo
+
+ Properties
+
+ Property	Description
+ href	Identifies the group to which the contact belongs or belonged. The group is referenced by its id.
+ deleted="true"?	Means, that the group membership was removed for the contact. This attribute will only be included if showdeleted is specified as query parameter, otherwise groupMembershipInfo for groups a contact does not belong to anymore is simply not returned.
+ Example
+
+ Contact was deleted from the group http://www.google.com/feeds/contacts/groups/jo%40gmail.com/base/1234a and is in group http://www.google.com/feeds/contacts/groups/jo%40gmail.com/base/1234b:
+
+ <gContact:groupMembershipInfo href="http://www.google.com/feeds/contacts/groups/jo%40gmail.com/base/1234a" deleted="true"/>
+ <gContact:groupMembershipInfo href="http://www.google.com/feeds/contacts/groups/jo%40gmail.com/base/1234b"/>
+ gContact:hobby
+
+ Specifies hobbies or interests of the person specified by the contact. The element can be repeated.
+
+ Example
+
+ The person's hobbies are paragliding, tennis and fishing:
+
+ <gContact:hobby>Paragliding</gContact:hobby>
+ <gContact:hobby>Tennis</gContact:hobby>
+ <gContact:hobby>Fishing</gContact:hobby>
+ gContact:initials
+
+ Specifies the initials of the person represented by the contact. The element cannot be repeated.
+
+ Example
+
+ The person's initials are J.F.K.:
+
+ <gContact:initials>J.F.K.</gContact:initials>
+ gContact:jot
+
+ Storage for arbitrary pieces of information about the contact. Each jot has a type specified by the rel attribute and a text value. The element can be repeated.
+
+ Properties
+
+ Property	Description
+ rel	Specifies the type of the jot. Can be one of the following values: home, work, other, keywords, user.
+ Example
+
+ The contact has two jots:
+
+ Home: Lived in Orange County
+ User: Borrowed my copy of "Alice's Adventures in Wonderland"
+ <gContact:jot rel='home'>Lived in Orange County</gContact:jot>
+ <gContact:jot rel='user'>Borrowed my copy of "Alice's Adventures in Wonderland"</gContact:jot>
+ gContact:language
+
+ Specifies the preferred languages of the contact. The element can be repeated.
+
+ The language must be specified using one of two mutually exclusive methods: using the freeform @label attribute, or using the @code attribute, whose value must conform to the IETF BCP 47 specification.
+
+ Properties
+
+ Property	Type	Description
+ @code?	xs:string	A language code conforming to the IETF BCP 47 specification. The server returns an error if a nonconformant value is provided.
+ @label?	xs:string	A freeform name of a language. Must not be empty or all whitespace.
+ When storing a <gContact:language> element that makes use of the @code attribute, the server is allowed to perform some normalization, for example to replace "en-us" with "en-US".
+
+ Example
+
+ The contact uses two languages to write messages - Russian and Australian English:
+
+ <gContact:language label='Russian' />
+ <gContact:language code='en-AU' />
+ gContact:maidenName
+
+ Specifies maiden name of the person represented by the contact. The element cannot be repeated.
+
+ Example
+
+ The person's maiden name is Smith:
+
+ <gContact:maidenName>Smith</gContact:maidenName>
+ gContact:mileage
+
+ Specifies the mileage for the entity represented by the contact. Can be used for example to document distance needed for reimbursement purposes. The value is not interpreted. The element cannot be repeated.
+
+ Example
+
+ The contact is 156 miles away:
+
+ <gContact:mileage>156 mi</gContact:mileage>
+ gContact:nickname
+
+ Specifies the nickname of the person represented by the contact. The element cannot be repeated.
+
+ Example
+
+ The person's nickname is Dragon:
+
+ <gContact:nickname>Dragon</gContact:nickname>
+ gContact:occupation
+
+ Specifies the occupation/profession of the person specified by the contact. The element cannot be repeated.
+
+ Example
+
+ The person is a carpenter:
+
+ <gContact:occupation>Carpenter</gContact:occupation>
+ gContact:priority
+
+ Classifies importance of the contact into 3 categories:
+
+ Low
+ Normal
+ High
+
+ The priority element cannot be repeated.
+ Properties
+
+ Property	Description
+ rel	Specifies contact's priority. Can be either low, normal or high.
+ Example
+
+ Contact's priority high:
+
+ <gContact:priority rel="high"/>
+ gContact:relation
+
+ This element describe another entity (usually a person) that is in a relation of some kind with the contact.
+
+ The gContact:relation element may be repeated.
+
+ Property	Type	Description
+ @label?	xs:string	A simple string value used to name this relation. The value must not be empty or all whitespace.
+ @rel?	xs:string	A programmatic value that identifies the type of relation.
+ text()	xs:string	The entity in relation with the contact.
+
+ Rel values
+ Value	Description
+ assistant	Contact's assistant.
+ brother	Contact's brother.
+ child	Contact's child.
+ domestic-partner	Contact's domestic partner.
+ father	Contact's father.
+ friend	Contact's friend.
+ manager	Contact's manager.
+ mother	Contact's mother.
+ parent	Contact's parent.
+ partner	Contact's (business) partner.
+ referred-by	Contact's referrer.
+ relative	Contact's relative.
+ sister	Contact's sister.
+ spouse	Contact's spouse.
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "value"
-})
-@XmlRootElement(name = "relation")
 public class Relation {
 
-    @XmlValue
+    @Text
     protected String value;
-    @XmlAttribute(name = "label")
+    @Attribute(name = "label", required = false)
     protected String label;
-    @XmlAttribute(name = "rel")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @Attribute(name = "rel", required = false)
     protected String rel;
 
     /**
      * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getValue() {
         return value;
@@ -84,11 +621,9 @@ public class Relation {
 
     /**
      * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setValue(String value) {
         this.value = value;
@@ -96,11 +631,9 @@ public class Relation {
 
     /**
      * Gets the value of the label property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getLabel() {
         return label;
@@ -108,11 +641,9 @@ public class Relation {
 
     /**
      * Sets the value of the label property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setLabel(String value) {
         this.label = value;
@@ -120,11 +651,9 @@ public class Relation {
 
     /**
      * Gets the value of the rel property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getRel() {
         return rel;
@@ -132,11 +661,9 @@ public class Relation {
 
     /**
      * Sets the value of the rel property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setRel(String value) {
         this.rel = value;

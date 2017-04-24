@@ -8,20 +8,14 @@
 
 package com.google.schemas.contact._2008;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import org.simpleframework.xml.Attribute;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -42,116 +36,51 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ * <p>
+ * rel	Predefined calendar link type. Can be one of work, home or free-busy.
+ * label	User-defined calendar link type.
+ * primary	Boolean flag denoting the calendar link as primary.
+ * href	The URL of the calendar.
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "calendarLink")
 public class CalendarLink {
 
-    @XmlAttribute(name = "href", required = true)
+    @Attribute(name = "href")
     protected String href;
-    @XmlAttribute(name = "label")
+    @Attribute(name = "label", required = false)
     protected String label;
-    @XmlAttribute(name = "primary")
-    protected Boolean primary;
-    @XmlAttribute(name = "rel")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @Attribute(name = "primary", required = false)
+    protected boolean primary;
+    @Attribute(name = "rel", required = false)
     protected String rel;
 
-    /**
-     * Gets the value of the href property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getHref() {
         return href;
     }
 
-    /**
-     * Sets the value of the href property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setHref(String value) {
         this.href = value;
     }
 
-    /**
-     * Gets the value of the label property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getLabel() {
         return label;
     }
 
-    /**
-     * Sets the value of the label property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setLabel(String value) {
         this.label = value;
     }
 
-    /**
-     * Gets the value of the primary property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isPrimary() {
+    public boolean isPrimary() {
         return primary;
     }
 
-    /**
-     * Sets the value of the primary property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setPrimary(Boolean value) {
+    public void setPrimary(boolean value) {
         this.primary = value;
     }
 
-    /**
-     * Gets the value of the rel property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getRel() {
         return rel;
     }
 
-    /**
-     * Sets the value of the rel property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setRel(String value) {
         this.rel = value;
     }

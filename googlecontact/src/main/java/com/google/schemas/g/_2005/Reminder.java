@@ -8,18 +8,13 @@
 
 package com.google.schemas.g._2005;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
+import org.simpleframework.xml.Attribute;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -38,142 +33,57 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "reminder")
 public class Reminder {
 
-    @XmlAttribute(name = "absoluteTime")
+    @Attribute(name = "absoluteTime", required = false)
     protected String absoluteTime;
-    @XmlAttribute(name = "days")
-    protected Integer days;
-    @XmlAttribute(name = "hours")
-    protected Integer hours;
-    @XmlAttribute(name = "method")
+    @Attribute(name = "days", required = false)
+    protected int days;
+    @Attribute(name = "hours", required = false)
+    protected int hours;
+    @Attribute(name = "method", required = false)
     protected String method;
-    @XmlAttribute(name = "minutes")
-    protected Integer minutes;
+    @Attribute(name = "minutes", required = false)
+    protected int minutes;
 
-    /**
-     * Gets the value of the absoluteTime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getAbsoluteTime() {
         return absoluteTime;
     }
 
-    /**
-     * Sets the value of the absoluteTime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setAbsoluteTime(String value) {
         this.absoluteTime = value;
     }
 
-    /**
-     * Gets the value of the days property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getDays() {
+    public int getDays() {
         return days;
     }
 
-    /**
-     * Sets the value of the days property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setDays(Integer value) {
+    public void setDays(int value) {
         this.days = value;
     }
 
-    /**
-     * Gets the value of the hours property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getHours() {
+    public int getHours() {
         return hours;
     }
 
-    /**
-     * Sets the value of the hours property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setHours(Integer value) {
+    public void setHours(int value) {
         this.hours = value;
     }
 
-    /**
-     * Gets the value of the method property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getMethod() {
         return method;
     }
 
-    /**
-     * Sets the value of the method property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setMethod(String value) {
         this.method = value;
     }
 
-    /**
-     * Gets the value of the minutes property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getMinutes() {
+    public int getMinutes() {
         return minutes;
     }
 
-    /**
-     * Sets the value of the minutes property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setMinutes(Integer value) {
+    public void setMinutes(int value) {
         this.minutes = value;
     }
 

@@ -8,19 +8,14 @@
 
 package com.google.schemas.g._2005;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-import javax.xml.bind.annotation.XmlType;
-import com.google.schemas.contact._2008.Event;
+import org.simpleframework.xml.Element;
 
 
 /**
  * <p>Java class for gdata_when complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType name="gdata_when">
  *   &lt;complexContent>
@@ -32,41 +27,17 @@ import com.google.schemas.contact._2008.Event;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "gdata_when", propOrder = {
-    "when"
-})
-@XmlSeeAlso({
-    Event.class
-})
+
 public class GdataWhen {
 
-    @XmlElement(required = true)
+    @Element(name = "when", required = false)
     protected When when;
 
-    /**
-     * Gets the value of the when property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link When }
-     *     
-     */
     public When getWhen() {
         return when;
     }
 
-    /**
-     * Sets the value of the when property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link When }
-     *     
-     */
     public void setWhen(When value) {
         this.when = value;
     }

@@ -8,23 +8,14 @@
 
 package com.google.schemas.g._2005;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -51,196 +42,170 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "agentOrCityOrCountry"
-})
-@XmlRootElement(name = "structuredPostalAddress")
 public class StructuredPostalAddress {
 
-    @XmlElementRefs({
-        @XmlElementRef(name = "formattedAddress", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "housename", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "postcode", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "pobox", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "neighborhood", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "subregion", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "country", namespace = "http://schemas.google.com/g/2005", type = Country.class, required = false),
-        @XmlElementRef(name = "city", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "agent", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "street", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "region", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false)
-    })
-    protected List<Object> agentOrCityOrCountry;
-    @XmlAttribute(name = "label")
+    @Attribute(name = "label", required = false)
     protected String label;
-    @XmlAttribute(name = "mailClass")
+    @Attribute(name = "mailClass", required = false)
     protected String mailClass;
-    @XmlAttribute(name = "primary")
-    protected Boolean primary;
-    @XmlAttribute(name = "rel")
+    @Attribute(name = "primary", required = false)
+    protected boolean primary;
+    @Attribute(name = "rel", required = false)
     protected String rel;
-    @XmlAttribute(name = "usage")
+    @Attribute(name = "usage", required = false)
     protected String usage;
+    @Element(name = "formattedAddress", required = false)
+    String formattedAddress;
+    @Element(name = "housename", required = false)
+    String housename;
+    @Element(name = "postcode", required = false)
+    String postcode;
+    @Element(name = "pobox", required = false)
+    String pobox;
+    @Element(name = "neighborhood", required = false)
+    String neighborhood;
+    @Element(name = "subregion", required = false)
+    String subregion;
+    @Element(name = "country", required = false)
+    Country country;
+    @Element(name = "city", required = false)
+    String city;
+    @Element(name = "agent", required = false)
+    String agent;
+    @Element(name = "street", required = false)
+    String street;
+    @Element(name = "region", required = false)
+    String region;
 
-    /**
-     * Gets the value of the agentOrCityOrCountry property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the agentOrCityOrCountry property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getAgentOrCityOrCountry().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link Country }
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * 
-     * 
-     */
-    public List<Object> getAgentOrCityOrCountry() {
-        if (agentOrCityOrCountry == null) {
-            agentOrCityOrCountry = new ArrayList<Object>();
-        }
-        return this.agentOrCityOrCountry;
+    public boolean getPrimary() {
+        return primary;
     }
 
-    /**
-     * Gets the value of the label property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
+    public String getFormattedAddress() {
+        return formattedAddress;
+    }
+
+    public void setFormattedAddress(String formattedAddress) {
+        this.formattedAddress = formattedAddress;
+    }
+
+    public String getHousename() {
+        return housename;
+    }
+
+    public void setHousename(String housename) {
+        this.housename = housename;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getPobox() {
+        return pobox;
+    }
+
+    public void setPobox(String pobox) {
+        this.pobox = pobox;
+    }
+
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public void setNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
+    }
+
+    public String getSubregion() {
+        return subregion;
+    }
+
+    public void setSubregion(String subregion) {
+        this.subregion = subregion;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAgent() {
+        return agent;
+    }
+
+    public void setAgent(String agent) {
+        this.agent = agent;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
     public String getLabel() {
         return label;
     }
 
-    /**
-     * Sets the value of the label property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setLabel(String value) {
         this.label = value;
     }
 
-    /**
-     * Gets the value of the mailClass property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getMailClass() {
         return mailClass;
     }
 
-    /**
-     * Sets the value of the mailClass property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setMailClass(String value) {
         this.mailClass = value;
     }
 
-    /**
-     * Gets the value of the primary property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isPrimary() {
+    public boolean isPrimary() {
         return primary;
     }
 
-    /**
-     * Sets the value of the primary property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setPrimary(Boolean value) {
+    public void setPrimary(boolean value) {
         this.primary = value;
     }
 
-    /**
-     * Gets the value of the rel property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getRel() {
         return rel;
     }
 
-    /**
-     * Sets the value of the rel property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setRel(String value) {
         this.rel = value;
     }
 
-    /**
-     * Gets the value of the usage property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getUsage() {
         return usage;
     }
 
-    /**
-     * Sets the value of the usage property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setUsage(String value) {
         this.usage = value;
     }

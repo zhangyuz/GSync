@@ -8,22 +8,14 @@
 
 package com.google.schemas.g._2005;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import org.simpleframework.xml.Element;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -40,58 +32,67 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "additionalNameOrFamilyNameOrFullName"
-})
-@XmlRootElement(name = "name")
+
 public class Name {
+    @Element(name = "additionalName", required = false)
+    AdditionalName additionalName;
+    @Element(name = "fullName", required = false)
+    FullName fullName;
+    @Element(name = "namePrefix", required = false)
+    FullName namePrefix;
+    @Element(name = "familyName", required = false)
+    FamilyName familyName;
+    @Element(name = "givenName", required = false)
+    GivenName givenName;
+    @Element(name = "nameSuffix", required = false)
+    String nameSuffix;
 
-    @XmlElementRefs({
-        @XmlElementRef(name = "additionalName", namespace = "http://schemas.google.com/g/2005", type = AdditionalName.class, required = false),
-        @XmlElementRef(name = "fullName", namespace = "http://schemas.google.com/g/2005", type = FullName.class, required = false),
-        @XmlElementRef(name = "namePrefix", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false),
-        @XmlElementRef(name = "familyName", namespace = "http://schemas.google.com/g/2005", type = FamilyName.class, required = false),
-        @XmlElementRef(name = "givenName", namespace = "http://schemas.google.com/g/2005", type = GivenName.class, required = false),
-        @XmlElementRef(name = "nameSuffix", namespace = "http://schemas.google.com/g/2005", type = JAXBElement.class, required = false)
-    })
-    protected List<Object> additionalNameOrFamilyNameOrFullName;
-
-    /**
-     * Gets the value of the additionalNameOrFamilyNameOrFullName property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the additionalNameOrFamilyNameOrFullName property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getAdditionalNameOrFamilyNameOrFullName().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link AdditionalName }
-     * {@link FullName }
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * {@link FamilyName }
-     * {@link GivenName }
-     * {@link JAXBElement }{@code <}{@link String }{@code >}
-     * 
-     * 
-     */
-    public List<Object> getAdditionalNameOrFamilyNameOrFullName() {
-        if (additionalNameOrFamilyNameOrFullName == null) {
-            additionalNameOrFamilyNameOrFullName = new ArrayList<Object>();
-        }
-        return this.additionalNameOrFamilyNameOrFullName;
+    public AdditionalName getAdditionalName() {
+        return additionalName;
     }
 
+    public void setAdditionalName(AdditionalName additionalName) {
+        this.additionalName = additionalName;
+    }
+
+    public FullName getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(FullName fullName) {
+        this.fullName = fullName;
+    }
+
+    public FullName getNamePrefix() {
+        return namePrefix;
+    }
+
+    public void setNamePrefix(FullName namePrefix) {
+        this.namePrefix = namePrefix;
+    }
+
+    public FamilyName getFamilyName() {
+        return familyName;
+    }
+
+    public void setFamilyName(FamilyName familyName) {
+        this.familyName = familyName;
+    }
+
+    public GivenName getGivenName() {
+        return givenName;
+    }
+
+    public void setGivenName(GivenName givenName) {
+        this.givenName = givenName;
+    }
+
+    public String getNameSuffix() {
+        return nameSuffix;
+    }
+
+    public void setNameSuffix(String nameSuffix) {
+        this.nameSuffix = nameSuffix;
+    }
 }

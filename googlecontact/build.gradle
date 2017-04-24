@@ -2,6 +2,12 @@ apply plugin: 'java'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    // https://mvnrepository.com/artifact/org.simpleframework/simple-xml
+    compile (group: 'org.simpleframework', name: 'simple-xml', version: '2.7.1', {
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    })
 }
 
 sourceCompatibility = "1.7"

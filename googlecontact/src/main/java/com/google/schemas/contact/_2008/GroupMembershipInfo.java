@@ -8,18 +8,13 @@
 
 package com.google.schemas.contact._2008;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
+import org.simpleframework.xml.Attribute;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -30,63 +25,32 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ * <p>
+ * value	The person's gender, either male or female
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "")
-@XmlRootElement(name = "groupMembershipInfo")
 public class GroupMembershipInfo {
 
-    @XmlAttribute(name = "deleted")
-    protected Boolean deleted;
-    @XmlAttribute(name = "href", required = true)
+    @Attribute(name = "deleted", required = false)
+    protected boolean deleted;
+    @Attribute(name = "href")
     protected String href;
 
-    /**
-     * Gets the value of the deleted property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isDeleted() {
+    public boolean isDeleted() {
         return deleted;
     }
 
-    /**
-     * Sets the value of the deleted property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setDeleted(Boolean value) {
+    public boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean value) {
         this.deleted = value;
     }
 
-    /**
-     * Gets the value of the href property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getHref() {
         return href;
     }
 
-    /**
-     * Sets the value of the href property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setHref(String value) {
         this.href = value;
     }

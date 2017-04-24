@@ -8,20 +8,17 @@
 
 package com.google.schemas.g._2005;
 
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -46,46 +43,19 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "reminder"
-})
-@XmlRootElement(name = "when")
+
 public class When {
 
+    @Element(required = false)
     protected List<Reminder> reminder;
-    @XmlAttribute(name = "endTime")
+    @Attribute(name = "endTime", required = false)
     protected String endTime;
-    @XmlAttribute(name = "startTime", required = true)
+    @Attribute(name = "startTime")
     protected String startTime;
-    @XmlAttribute(name = "valueString")
+    @Attribute(name = "valueString", required = false)
     protected String valueString;
 
-    /**
-     * Gets the value of the reminder property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the reminder property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getReminder().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Reminder }
-     * 
-     * 
-     */
     public List<Reminder> getReminder() {
         if (reminder == null) {
             reminder = new ArrayList<Reminder>();
@@ -93,74 +63,30 @@ public class When {
         return this.reminder;
     }
 
-    /**
-     * Gets the value of the endTime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
+    public void setReminder(List<Reminder> reminder) {
+        this.reminder = reminder;
+    }
+
     public String getEndTime() {
         return endTime;
     }
 
-    /**
-     * Sets the value of the endTime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setEndTime(String value) {
         this.endTime = value;
     }
 
-    /**
-     * Gets the value of the startTime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getStartTime() {
         return startTime;
     }
 
-    /**
-     * Sets the value of the startTime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setStartTime(String value) {
         this.startTime = value;
     }
 
-    /**
-     * Gets the value of the valueString property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getValueString() {
         return valueString;
     }
 
-    /**
-     * Sets the value of the valueString property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setValueString(String value) {
         this.valueString = value;
     }

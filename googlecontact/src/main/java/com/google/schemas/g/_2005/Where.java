@@ -8,18 +8,16 @@
 
 package com.google.schemas.g._2005;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
 
+import java.util.List;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -34,116 +32,46 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "entryLink"
-})
-@XmlRootElement(name = "where")
 public class Where {
 
-    protected EntryLink entryLink;
-    @XmlAttribute(name = "label")
+    @Element
+    protected List<EntryLink> entryLink;
+    @Attribute(name = "label", required = false)
     protected String label;
-    @XmlAttribute(name = "rel")
+    @Attribute(name = "rel", required = false)
     protected String rel;
-    @XmlAttribute(name = "valueString")
+    @Attribute(name = "valueString", required = false)
     protected String valueString;
 
-    /**
-     * Gets the value of the entryLink property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EntryLink }
-     *     
-     */
-    public EntryLink getEntryLink() {
+    public List<EntryLink> getEntryLink() {
         return entryLink;
     }
 
-    /**
-     * Sets the value of the entryLink property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EntryLink }
-     *     
-     */
-    public void setEntryLink(EntryLink value) {
+    public void setEntryLink(List<EntryLink> value) {
         this.entryLink = value;
     }
 
-    /**
-     * Gets the value of the label property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getLabel() {
         return label;
     }
 
-    /**
-     * Sets the value of the label property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setLabel(String value) {
         this.label = value;
     }
 
-    /**
-     * Gets the value of the rel property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getRel() {
         return rel;
     }
 
-    /**
-     * Sets the value of the rel property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setRel(String value) {
         this.rel = value;
     }
 
-    /**
-     * Gets the value of the valueString property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getValueString() {
         return valueString;
     }
 
-    /**
-     * Sets the value of the valueString property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setValueString(String value) {
         this.valueString = value;
     }

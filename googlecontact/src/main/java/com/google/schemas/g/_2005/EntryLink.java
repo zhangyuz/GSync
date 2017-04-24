@@ -8,17 +8,9 @@
 
 package com.google.schemas.g._2005;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 import org.w3._2005.atom.Author;
 import org.w3._2005.atom.Content;
 import org.w3._2005.atom.Contributor;
@@ -26,12 +18,13 @@ import org.w3._2005.atom.Rights;
 import org.w3._2005.atom.Summary;
 import org.w3._2005.atom.Title;
 
+import java.util.List;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -44,117 +37,48 @@ import org.w3._2005.atom.Title;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "entry"
-})
-@XmlRootElement(name = "entryLink")
+
+@Root
 public class EntryLink {
 
-    @XmlElement(namespace = "http://www.w3.org/2005/Atom")
-    protected EntryLink.Entry entry;
-    @XmlAttribute(name = "href")
+    @Element(required = false)
+    protected List<EntryLink.Entry> entry;
+    @Attribute(name = "href", required = false)
     protected String href;
-    @XmlAttribute(name = "readOnly")
-    protected Boolean readOnly;
-    @XmlAttribute(name = "rel")
+    @Attribute(name = "readOnly", required = false)
+    protected boolean readOnly;
+    @Attribute(name = "rel", required = false)
     protected String rel;
 
-    /**
-     * Gets the value of the entry property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link EntryLink.Entry }
-     *     
-     */
-    public EntryLink.Entry getEntry() {
+    public List<EntryLink.Entry> getEntry() {
         return entry;
     }
 
-    /**
-     * Sets the value of the entry property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link EntryLink.Entry }
-     *     
-     */
-    public void setEntry(EntryLink.Entry value) {
+    public void setEntry(List<EntryLink.Entry> value) {
         this.entry = value;
     }
 
-    /**
-     * Gets the value of the href property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getHref() {
         return href;
     }
 
-    /**
-     * Sets the value of the href property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setHref(String value) {
         this.href = value;
     }
 
-    /**
-     * Gets the value of the readOnly property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isReadOnly() {
+    public boolean isReadOnly() {
         return readOnly;
     }
 
-    /**
-     * Sets the value of the readOnly property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setReadOnly(Boolean value) {
+    public void setReadOnly(boolean value) {
         this.readOnly = value;
     }
 
-    /**
-     * Gets the value of the rel property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getRel() {
         return rel;
     }
 
-    /**
-     * Sets the value of the rel property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setRel(String value) {
         this.rel = value;
     }
@@ -162,9 +86,9 @@ public class EntryLink {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     * <p>
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     * <p>
      * <pre>
      * &lt;complexType>
      *   &lt;complexContent>
@@ -189,82 +113,146 @@ public class EntryLink {
      *   &lt;/complexContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "controlOrEditedOrAuthor"
-    })
     public static class Entry {
-
-        @XmlElementRefs({
-            @XmlElementRef(name = "content", namespace = "http://www.w3.org/2005/Atom", type = Content.class, required = false),
-            @XmlElementRef(name = "author", namespace = "http://www.w3.org/2005/Atom", type = Author.class, required = false),
-            @XmlElementRef(name = "id", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "control", namespace = "http://www.w3.org/2007/app", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "edited", namespace = "http://www.w3.org/2007/app", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "link", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "category", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "contributor", namespace = "http://www.w3.org/2005/Atom", type = Contributor.class, required = false),
-            @XmlElementRef(name = "title", namespace = "http://www.w3.org/2005/Atom", type = Title.class, required = false),
-            @XmlElementRef(name = "summary", namespace = "http://www.w3.org/2005/Atom", type = Summary.class, required = false),
-            @XmlElementRef(name = "published", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "updated", namespace = "http://www.w3.org/2005/Atom", type = JAXBElement.class, required = false),
-            @XmlElementRef(name = "rights", namespace = "http://www.w3.org/2005/Atom", type = Rights.class, required = false)
-        })
-        protected List<Object> controlOrEditedOrAuthor;
-        @XmlAttribute(name = "etag", namespace = "http://schemas.google.com/g/2005")
+        @Attribute(name = "etag", required = false)
         protected String etag;
+        @Element(name = "content", required = false)
+        Content content;
+        @Element(name = "author", required = false)
+        Author author;
+        @Element(name = "id", required = false)
+        String id;
+        @Element(name = "control", required = false)
+        AppDraft control;
+        @Element(name = "edited", required = false)
+        String edited;
+        @Element(name = "link", required = false)
+        Link link;
+        @Element(name = "category", required = false)
+        Category category;
+        @Element(name = "contributor", required = false)
+        Contributor contributor;
+        @Element(name = "title", required = false)
+        Title title;
+        @Element(name = "summary", required = false)
+        Summary summary;
+        @Element(name = "published", required = false)
+        String published;
+        @Element(name = "updated", required = false)
+        String updated;
+        @Element(name = "rights", required = false)
+        Rights rights;
 
-        /**
-         * Gets the value of the controlOrEditedOrAuthor property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the controlOrEditedOrAuthor property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getControlOrEditedOrAuthor().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link Content }
-         * {@link Author }
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link JAXBElement }{@code <}{@link AppDraft }{@code >}
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link JAXBElement }{@code <}{@link EntryLink.Entry.Link }{@code >}
-         * {@link JAXBElement }{@code <}{@link EntryLink.Entry.Category }{@code >}
-         * {@link Contributor }
-         * {@link Title }
-         * {@link Summary }
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link JAXBElement }{@code <}{@link String }{@code >}
-         * {@link Rights }
-         * 
-         * 
-         */
-        public List<Object> getControlOrEditedOrAuthor() {
-            if (controlOrEditedOrAuthor == null) {
-                controlOrEditedOrAuthor = new ArrayList<Object>();
-            }
-            return this.controlOrEditedOrAuthor;
+        public Content getContent() {
+            return content;
+        }
+
+        public void setContent(Content content) {
+            this.content = content;
+        }
+
+        public Author getAuthor() {
+            return author;
+        }
+
+        public void setAuthor(Author author) {
+            this.author = author;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+
+        public AppDraft getControl() {
+            return control;
+        }
+
+        public void setControl(AppDraft control) {
+            this.control = control;
+        }
+
+        public String getEdited() {
+            return edited;
+        }
+
+        public void setEdited(String edited) {
+            this.edited = edited;
+        }
+
+        public Link getLink() {
+            return link;
+        }
+
+        public void setLink(Link link) {
+            this.link = link;
+        }
+
+        public Category getCategory() {
+            return category;
+        }
+
+        public void setCategory(Category category) {
+            this.category = category;
+        }
+
+        public Contributor getContributor() {
+            return contributor;
+        }
+
+        public void setContributor(Contributor contributor) {
+            this.contributor = contributor;
+        }
+
+        public Title getTitle() {
+            return title;
+        }
+
+        public void setTitle(Title title) {
+            this.title = title;
+        }
+
+        public Summary getSummary() {
+            return summary;
+        }
+
+        public void setSummary(Summary summary) {
+            this.summary = summary;
+        }
+
+        public String getPublished() {
+            return published;
+        }
+
+        public void setPublished(String published) {
+            this.published = published;
+        }
+
+        public String getUpdated() {
+            return updated;
+        }
+
+        public void setUpdated(String updated) {
+            this.updated = updated;
+        }
+
+        public Rights getRights() {
+            return rights;
+        }
+
+        public void setRights(Rights rights) {
+            this.rights = rights;
         }
 
         /**
          * Gets the value of the etag property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getEtag() {
             return etag;
@@ -272,11 +260,9 @@ public class EntryLink {
 
         /**
          * Sets the value of the etag property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setEtag(String value) {
             this.etag = value;
@@ -285,9 +271,9 @@ public class EntryLink {
 
         /**
          * <p>Java class for anonymous complex type.
-         * 
+         * <p>
          * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
+         * <p>
          * <pre>
          * &lt;complexType>
          *   &lt;complexContent>
@@ -300,114 +286,46 @@ public class EntryLink {
          *   &lt;/complexContent>
          * &lt;/complexType>
          * </pre>
-         * 
-         * 
          */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "")
         public static class Category {
 
-            @XmlAttribute(name = "label")
+            @Attribute(name = "label", required = false)
             protected String label;
-            @XmlAttribute(name = "scheme")
+            @Attribute(name = "scheme", required = false)
             protected String scheme;
-            @XmlAttribute(name = "term", required = true)
+            @Attribute(name = "term")
             protected String term;
-            @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
+            @Attribute(name = "lang", required = false)
             protected String lang;
 
-            /**
-             * Gets the value of the label property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
             public String getLabel() {
                 return label;
             }
 
-            /**
-             * Sets the value of the label property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
             public void setLabel(String value) {
                 this.label = value;
             }
 
-            /**
-             * Gets the value of the scheme property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
             public String getScheme() {
                 return scheme;
             }
 
-            /**
-             * Sets the value of the scheme property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
             public void setScheme(String value) {
                 this.scheme = value;
             }
 
-            /**
-             * Gets the value of the term property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
             public String getTerm() {
                 return term;
             }
 
-            /**
-             * Sets the value of the term property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
             public void setTerm(String value) {
                 this.term = value;
             }
 
-            /**
-             * Gets the value of the lang property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
             public String getLang() {
                 return lang;
             }
 
-            /**
-             * Sets the value of the lang property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
             public void setLang(String value) {
                 this.lang = value;
             }
@@ -417,9 +335,9 @@ public class EntryLink {
 
         /**
          * <p>Java class for anonymous complex type.
-         * 
+         * <p>
          * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
+         * <p>
          * <pre>
          * &lt;complexType>
          *   &lt;complexContent>
@@ -435,192 +353,76 @@ public class EntryLink {
          *   &lt;/complexContent>
          * &lt;/complexType>
          * </pre>
-         * 
-         * 
          */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "")
         public static class Link {
 
-            @XmlAttribute(name = "href", required = true)
+            @Attribute(name = "href")
             protected String href;
-            @XmlAttribute(name = "hreflang")
+            @Attribute(name = "hreflang", required = false)
             protected String hreflang;
-            @XmlAttribute(name = "length")
+            @Attribute(name = "length", required = false)
             protected Long length;
-            @XmlAttribute(name = "rel")
+            @Attribute(name = "rel", required = false)
             protected String rel;
-            @XmlAttribute(name = "title")
+            @Attribute(name = "title", required = false)
             protected String title;
-            @XmlAttribute(name = "type")
+            @Attribute(name = "type", required = false)
             protected String type;
-            @XmlAttribute(name = "lang", namespace = "http://www.w3.org/XML/1998/namespace")
+            @Attribute(name = "lang", required = false)
             protected String lang;
 
-            /**
-             * Gets the value of the href property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
             public String getHref() {
                 return href;
             }
 
-            /**
-             * Sets the value of the href property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
             public void setHref(String value) {
                 this.href = value;
             }
 
-            /**
-             * Gets the value of the hreflang property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
             public String getHreflang() {
                 return hreflang;
             }
 
-            /**
-             * Sets the value of the hreflang property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
             public void setHreflang(String value) {
                 this.hreflang = value;
             }
 
-            /**
-             * Gets the value of the length property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link Long }
-             *     
-             */
             public Long getLength() {
                 return length;
             }
 
-            /**
-             * Sets the value of the length property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link Long }
-             *     
-             */
             public void setLength(Long value) {
                 this.length = value;
             }
 
-            /**
-             * Gets the value of the rel property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
             public String getRel() {
                 return rel;
             }
 
-            /**
-             * Sets the value of the rel property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
             public void setRel(String value) {
                 this.rel = value;
             }
 
-            /**
-             * Gets the value of the title property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
             public String getTitle() {
                 return title;
             }
 
-            /**
-             * Sets the value of the title property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
             public void setTitle(String value) {
                 this.title = value;
             }
 
-            /**
-             * Gets the value of the type property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
             public String getType() {
                 return type;
             }
 
-            /**
-             * Sets the value of the type property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
             public void setType(String value) {
                 this.type = value;
             }
 
-            /**
-             * Gets the value of the lang property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
             public String getLang() {
                 return lang;
             }
 
-            /**
-             * Sets the value of the lang property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
             public void setLang(String value) {
                 this.lang = value;
             }

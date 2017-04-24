@@ -8,20 +8,14 @@
 
 package com.google.schemas.g._2005;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyElement;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-import org.w3c.dom.Element;
-
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.ElementUnion;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ * <p>
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ * <p>
  * <pre>
  * &lt;complexType>
  *   &lt;complexContent>
@@ -34,117 +28,54 @@ import org.w3c.dom.Element;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ * @XmlAccessorType(XmlAccessType.FIELD)
+ * @XmlType(name = "", propOrder = {
+ * "any"
+ * })
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "any"
-})
-@XmlRootElement(name = "extendedProperty")
+
 public class ExtendedProperty {
 
-    @XmlAnyElement
-    protected Element any;
-    @XmlAttribute(name = "name", required = true)
+    @Attribute(name = "name")
     protected String name;
-    @XmlAttribute(name = "realm")
+    @Attribute(name = "realm", required = false)
     protected String realm;
-    @XmlAttribute(name = "value")
+    @Attribute(name = "value", required = false)
     protected String value;
+    @ElementUnion(
+            @org.simpleframework.xml.Element(required = false, type = Object.class)
+    )
+    Object any;
 
-    /**
-     * Gets the value of the any property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Element }
-     *     
-     */
-    public Element getAny() {
+    public Object getAny() {
         return any;
     }
 
-    /**
-     * Sets the value of the any property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Element }
-     *     
-     */
-    public void setAny(Element value) {
+    public void setAny(Object value) {
         this.any = value;
     }
 
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setName(String value) {
         this.name = value;
     }
 
-    /**
-     * Gets the value of the realm property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getRealm() {
         return realm;
     }
 
-    /**
-     * Sets the value of the realm property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setRealm(String value) {
         this.realm = value;
     }
 
-    /**
-     * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
     public String getValue() {
         return value;
     }
 
-    /**
-     * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
     public void setValue(String value) {
         this.value = value;
     }
