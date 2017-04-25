@@ -30,3 +30,11 @@ find . -name "*xsd" | xargs -iT xjc T
 # 发现对于复杂的 xsd 文件，这个工具无法工作。。。
 ```
 
+6. 还有一个工具，帮助生成 SimpleXML 格式的POJO,可以借助这个工具来对比 xjc 生成的POJO。
+
+```shell
+git clone git@github.com:realrunner/simple-xml-pojo-gen.git
+cd simple-xml-pojo-gen
+google-chrome-stable index.html
+```
+

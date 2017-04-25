@@ -34,17 +34,16 @@ import com.google.schemas.g._2005.Where;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Root
 public class Feed {
 
-    protected List<Object> authorOrGeneratorOrId;
     @Attribute(name = "etag", required = false)
-    protected String etag;
+    String etag;
     @Element(name = "title", required = false)
     Title title;
     @Element(name = "generator", required = false)
@@ -55,14 +54,14 @@ public class Feed {
     int startIndex;
     @Element(name = "id", required = false)
     String id;
-    @Element(name = "entry", required = false)
-    Entry entry;
+    @ElementList(entry = "entry", inline = true, required = false)
+    List<Entry> entry;
     @Element(name = "totalResults", required = false)
     int totalResults;
     @Element(name = "category", required = false)
     Category category;
-    @Element(name = "link", required = false)
-    Link link;
+    @ElementList(entry = "link", inline = true, required = false)
+    List<Link> link;
     @Element(name = "updated", required = false)
     String updated;
     @Element(name = "itemsPerPage", required = false)
@@ -74,6 +73,24 @@ public class Feed {
 
     public void setEtag(String value) {
         this.etag = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Feed{" +
+                "etag='" + etag + '\'' +
+                ", title=" + title +
+                ", generator=" + generator +
+                ", author=" + author +
+                ", startIndex=" + startIndex +
+                ", id='" + id + '\'' +
+                ", entry=" + entry +
+                ", totalResults=" + totalResults +
+                ", category=" + category +
+                ", link=" + link +
+                ", updated='" + updated + '\'' +
+                ", itemsPerPage=" + itemsPerPage +
+                '}';
     }
 
     public Title getTitle() {
@@ -116,13 +133,13 @@ public class Feed {
         this.id = id;
     }
 
-    public Entry getEntry() {
+    public List getEntry() {
         return entry;
     }
 
-    public void setEntry(Entry entry) {
+    /*public void setEntry(Entry entry) {
         this.entry = entry;
-    }
+    }*/
 
     public int getTotalResults() {
         return totalResults;
@@ -140,12 +157,8 @@ public class Feed {
         this.category = category;
     }
 
-    public Link getLink() {
+    public List getLink() {
         return link;
-    }
-
-    public void setLink(Link link) {
-        this.link = link;
     }
 
     public String getUpdated() {
@@ -162,14 +175,6 @@ public class Feed {
 
     public void setItemsPerPage(int itemsPerPage) {
         this.itemsPerPage = itemsPerPage;
-    }
-
-    public List<Object> getAuthorOrGeneratorOrId() {
-        return authorOrGeneratorOrId;
-    }
-
-    public void setAuthorOrGeneratorOrId(List<Object> authorOrGeneratorOrId) {
-        this.authorOrGeneratorOrId = authorOrGeneratorOrId;
     }
 
     public static class Category {
@@ -196,13 +201,19 @@ public class Feed {
             this.term = value;
         }
 
+        @Override
+        public String toString() {
+            return "Category{" +
+                    "scheme='" + scheme + '\'' +
+                    ", term='" + term + '\'' +
+                    '}';
+        }
     }
 
     public static class Entry {
 
-        protected List<Object> editedOrContentOrId;
-        @Attribute(name = "etag")
-        protected String etag;
+        @Attribute(name = "etag", required = false)
+        String etag;
         @Element(name = "content", required = false)
         Content content;
         @Element(name = "groupMembershipInfo", required = false)
@@ -252,7 +263,6 @@ public class Feed {
         @Element(name = "where", required = false)
         Where where;
         @Element(name = "relation", required = false)
-
         Relation relation;
         @Element(name = "maidenName", required = false)
         String maidenName;
@@ -266,8 +276,8 @@ public class Feed {
         Title title;
         @Element(name = "priority", required = false)
         Priority priority;
-        @Element(name = "link", required = false)
-        Link link;
+        @ElementList(entry = "link", inline = true, required = false)
+        List<Link> link;
         @Element(name = "directoryServer", required = false)
         String directoryServer;
         @Element(name = "jot", required = false)
@@ -284,6 +294,53 @@ public class Feed {
         Name name;
         @Element(name = "structuredPostalAddress", required = false)
         StructuredPostalAddress structuredPostalAddress;
+
+        @Override
+        public String toString() {
+            return "Entry{" +
+                    "etag='" + etag + '\'' +
+                    ", content=" + content +
+                    ", groupMembershipInfo=" + groupMembershipInfo +
+                    ", im=" + im +
+                    ", billingInformation='" + billingInformation + '\'' +
+                    ", organization=" + organization +
+                    ", id='" + id + '\'' +
+                    ", initials='" + initials + '\'' +
+                    ", edited='" + edited + '\'' +
+                    ", nickname='" + nickname + '\'' +
+                    ", externalId=" + externalId +
+                    ", userDefinedField=" + userDefinedField +
+                    ", event=" + event +
+                    ", category=" + category +
+                    ", email=" + email +
+                    ", extendedProperty=" + extendedProperty +
+                    ", postalAddress=" + postalAddress +
+                    ", phoneNumber=" + phoneNumber +
+                    ", language=" + language +
+                    ", hobby='" + hobby + '\'' +
+                    ", calendarLink=" + calendarLink +
+                    ", website=" + website +
+                    ", deleted=" + deleted +
+                    ", sensitivity=" + sensitivity +
+                    ", where=" + where +
+                    ", relation=" + relation +
+                    ", maidenName='" + maidenName + '\'' +
+                    ", subject='" + subject + '\'' +
+                    ", gender=" + gender +
+                    ", shortName='" + shortName + '\'' +
+                    ", title=" + title +
+                    ", priority=" + priority +
+                    ", link=" + link +
+                    ", directoryServer='" + directoryServer + '\'' +
+                    ", jot=" + jot +
+                    ", occupation='" + occupation + '\'' +
+                    ", birthday=" + birthday +
+                    ", mileage='" + mileage + '\'' +
+                    ", updated='" + updated + '\'' +
+                    ", name=" + name +
+                    ", structuredPostalAddress=" + structuredPostalAddress +
+                    '}';
+        }
 
         public Content getContent() {
             return content;
@@ -533,13 +590,13 @@ public class Feed {
             this.priority = priority;
         }
 
-        public Link getLink() {
+        public List getLink() {
             return link;
         }
 
-        public void setLink(Link link) {
+        /* public void setLink(List<Link> link) {
             this.link = link;
-        }
+        } */
 
         public String getDirectoryServer() {
             return directoryServer;
@@ -605,17 +662,6 @@ public class Feed {
             this.structuredPostalAddress = structuredPostalAddress;
         }
 
-        public List<Object> getEditedOrContentOrId() {
-            if (editedOrContentOrId == null) {
-                editedOrContentOrId = new ArrayList<Object>();
-            }
-            return this.editedOrContentOrId;
-        }
-
-        public void setEditedOrContentOrId(List<Object> editedOrContentOrId) {
-            this.editedOrContentOrId = editedOrContentOrId;
-        }
-
         public String getEtag() {
             return etag;
         }
@@ -628,16 +674,37 @@ public class Feed {
 
     public static class Link {
 
-        @Attribute(name = "href", required = true)
+        @Attribute(name = "href")
         protected String href;
-        @Attribute(name = "length")
+        @Attribute(name = "length", required = false)
         protected Long length;
-        @Attribute(name = "rel", required = true)
+        @Attribute(name = "rel", required = false)
         protected String rel;
-        @Attribute(name = "title")
+        @Attribute(name = "title", required = false)
         protected String title;
-        @Attribute(name = "type", required = true)
+        @Attribute(name = "type")
         protected String type;
+        @Attribute(name = "etag", required = false)
+        String etag;
+
+        public String getEtag() {
+            return etag;
+        }
+
+        public void setEtag(String etag) {
+            this.etag = etag;
+        }
+
+        @Override
+        public String toString() {
+            return "Link{" +
+                    "href='" + href + '\'' +
+                    ", length=" + length +
+                    ", rel='" + rel + '\'' +
+                    ", title='" + title + '\'' +
+                    ", type='" + type + '\'' +
+                    '}';
+        }
 
         public String getHref() {
             return href;

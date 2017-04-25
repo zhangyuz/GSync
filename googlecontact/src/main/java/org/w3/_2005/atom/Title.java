@@ -33,7 +33,7 @@ import org.simpleframework.xml.Text;
 @Root
 public class Title {
 
-    @Text
+    @Text(required = false)
     protected String value;
     @Attribute(name = "src", required = false)
     protected String src;

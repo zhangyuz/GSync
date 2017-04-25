@@ -10,6 +10,7 @@ package com.google.schemas.g._2005;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 import org.w3._2005.atom.Author;
 import org.w3._2005.atom.Content;
@@ -42,7 +43,7 @@ import java.util.List;
 @Root
 public class EntryLink {
 
-    @Element(required = false)
+    @ElementList(required = false)
     protected List<EntryLink.Entry> entry;
     @Attribute(name = "href", required = false)
     protected String href;

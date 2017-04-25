@@ -9,7 +9,7 @@
 package com.google.schemas.g._2005;
 
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ import java.util.List;
  */
 public class Where {
 
-    @Element
+    @ElementList(entry = "entryLink", inline = true, required = false)
     protected List<EntryLink> entryLink;
     @Attribute(name = "label", required = false)
     protected String label;
@@ -44,12 +44,8 @@ public class Where {
     @Attribute(name = "valueString", required = false)
     protected String valueString;
 
-    public List<EntryLink> getEntryLink() {
+    public List getEntryLink() {
         return entryLink;
-    }
-
-    public void setEntryLink(List<EntryLink> value) {
-        this.entryLink = value;
     }
 
     public String getLabel() {
